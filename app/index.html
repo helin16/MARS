@@ -14,28 +14,68 @@
     <link rel="stylesheet" href="styles/main.css">
     <!-- endbuild -->
   </head>
-  <body ng-app="yoproApp">
+  <body ng-app="meltsApp">
     <!--[if lt IE 7]>
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
 
     <!-- Add your site or application content here -->
-    <div class="container">
-      <div class="header">
-        <ul class="nav nav-pills pull-right">
-          <li class="active"><a ng-href="#">Home</a></li>
-          <li><a ng-href="#">About</a></li>
-          <li><a ng-href="#">Contact</a></li>
-        </ul>
-        <h3 class="text-muted">yopro</h3>
+  	<div class="navbar sb-slide">
+      <div class="sb-toggle-left">
+        <div class="menu-bar"></div>
+        <div class="menu-bar"></div>
+        <div class="menu-bar"></div>
       </div>
-
-      <div ng-include="'views/main.html'" ng-controller="MainCtrl"></div>
-
-      <div class="footer">
-        <p><span class="glyphicon glyphicon-heart"></span> from the Yeoman team</p>
+      <div class="container">
+        <div class="page-title">
+          <!-- <img src="images/logo.png" height="24" alt="logo"> -->
+          melts
+        </div>
       </div>
+  	</div>
+
+    <!-- quick fix for background glitch -->
+    <div style="background-color: white; height: 100%; width: 100%; position: fixed; z-index: -100;">
     </div>
+
+  	<div id="sb-site">
+  		<div class="main-content">
+
+
+        		<div ng-include="'views/login.html'" ng-controller="LoginCtrl"></div>
+
+
+
+  		</div>
+  	</div>
+
+  	<div class="sb-slidebar sb-left">
+  		<div class="side-menu">
+  			<ul>
+  				<li>Add/Remove Units</li>
+  				<li>Add/Remove Students</li>
+  				<li>Add/Remove Lecturers</li>
+  				<li>Download Student Data</li>
+  			</ul>
+  			<hr>
+  			<ul>
+  				<li>Account Settings</li>
+  				<li>Logout</li>
+  			</ul>
+  		</div>
+  	</div>
+
+
+
+
+
+
+
+
+
+
+
+
 
 
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
@@ -58,6 +98,7 @@
 
     <!-- build:js(.) scripts/vendor.js -->
     <!-- bower:js -->
+    <script src="bower_components/jquery/dist/jquery.js"></script>
     <script src="bower_components/angular/angular.js"></script>
     <script src="bower_components/json3/lib/json3.js"></script>
     <!-- endbower -->
@@ -65,7 +106,16 @@
 
         <!-- build:js({.tmp,app}) scripts/scripts.js -->
         <script src="scripts/app.js"></script>
-        <script src="scripts/controllers/main.js"></script>
+        <script src="scripts/controllers/login.js"></script>
         <!-- endbuild -->
+        <script src="bower_components/Slidebars/distribution/0.10.2/slidebars.js"></script>
+        <script>
+          (function($) {
+            $(document).ready(function() {
+              $.slidebars();
+            });
+          }) (jQuery);
+        </script>
+
 </body>
 </html>

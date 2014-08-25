@@ -1,6 +1,7 @@
 // bower:scss
 // endbower
 
+
 .browsehappy {
   margin: 0.2em 0;
   background: #ccc;
@@ -12,6 +13,10 @@
 body {
   padding-top: 20px;
   padding-bottom: 20px;
+}
+
+.container {
+  margin: 0 auto;
 }
 
 /* Everything but the jumbotron gets side spacing for mobile first views */
@@ -48,6 +53,7 @@ body {
 
 /* Main marketing message and sign up button */
 .jumbotron {
+  background-color: #eee;
   text-align: center;
   border-bottom: 1px solid #e5e5e5;
 
@@ -69,7 +75,7 @@ body {
 /* Responsive: Portrait tablets and up */
 @media screen and (min-width: 768px) {
   .container {
-    max-width: 730px;
+    max-width: 960px;
   }
 
   /* Remove the padding we set earlier */
@@ -88,3 +94,6 @@ body {
     border-bottom: 0;
   }
 }
+
+
+@import "menubar";

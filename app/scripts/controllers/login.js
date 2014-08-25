@@ -7,8 +7,8 @@
  * # MainCtrl
  * Controller of the yoproApp
  */
-angular.module('yoproApp')
-  .controller('MainCtrl', function ($scope) {
+angular.module('meltsApp')
+  .controller('LoginCtrl', function ($scope) {
     $scope.awesomeThings = [
       'HTML5 Boilerplate',
       'AngularJS',
