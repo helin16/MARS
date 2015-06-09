@@ -1,6 +1,6 @@
 {
   "name": "melts",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "homepage": "https://github.com/SLC3/melts",
   "authors": [
     "Nathan <nathansherburn@gmail.com>"
@@ -20,5 +20,10 @@
     "bower_components",
     "test",
     "tests"
-  ]
+  ],
+  "dependencies": {
+    "roboto-fontface": "~0.4.2",
+    "angular": "~1.4.0",
+    "angular-material": "~0.9.8"
+  }
 }
