@@ -1,0 +1,9 @@
+.collapsable {
+  height: 100px;
+  overflow: hidden;
+  -webkit-transition:all linear 0.1s;
+  transition:all linear 0.1s;
+}
+.collapsable.ng-hide {
+  height: 0;
+}

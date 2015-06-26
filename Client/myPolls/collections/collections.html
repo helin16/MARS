@@ -1,0 +1,43 @@
+<md-toolbar>
+  <div class="md-toolbar-tools">
+    <md-button class="md-icon-button md-secondary" aria-label="Settings" ng-click="openLeftMenu()" hide-gt-md>
+      <md-icon class="material-icons"> menu </md-icon>
+    </md-button> 
+  </div>
+</md-toolbar>
+
+<md-content layout-fill class="md-hue-1">
+
+  <div ng-show="true" class="max-width-960">
+    <md-subheader class="md-no-sticky md-hue-1">My Collections</md-subheader>
+    <md-card ng-repeat="collection in collections">
+
+  <md-toolbar class="md-hue-3">
+    <div class="md-toolbar-tools">
+      {{ collection.name }}
+      <span flex></span>
+      <md-button class="md-icon-button" ng-click="answer('not applicable')">
+        <md-icon class="material-icons"> more_vert </md-icon>
+      </md-button>
+    </div>
+  </md-toolbar>
+
+
+      <md-card-content>
+        
+        
+        <p class="md-subhead">Created: {{ collection.created }}</p>
+        <span>Collaborators:</span>
+        <span class="md-subhead" ng-repeat="user in collection.collaborators">{{ user }} </span>
+        <p ng-repeat="poll in group.polls">
+          {{ poll.question }}
+        </p>
+      </md-card-content>
+      <div class="md-actions" layout="row" layout-align="end center">
+        <md-button ng-click="navigateTo()" class="md-primary">Collaborate</md-button>
+        <md-button ng-click="navigateTo()" class="md-primary">Edit</md-button>
+      </div>
+    </md-card>
+  </div>
+
+</md-content>

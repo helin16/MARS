@@ -1,0 +1,104 @@
+<md-sidenav md-component-id="left" class="md-sidenav-left md-whiteframe-z2" md-is-locked-open="$mdMedia('gt-md')" layout="column">
+    <md-toolbar class="white-md-toolbar">
+      <div class="md-toolbar-tools">
+        melts
+      </div>
+    </md-toolbar>
+    <md-content>
+
+
+        <md-list>
+            <md-subheader class="md-no-sticky">My Units</md-subheader>
+                
+            <md-list-item ng-repeat="unit in units" ng-click="expand()">
+                <p>{{unit.title}}</p>
+            </md-list-item>
+
+        <md-list-item ng-click="navigateTo()">
+            <p>ADD +</p>
+        </md-list-item>
+
+        </md-list>
+
+
+
+    </md-content>
+
+</md-sidenav>
+
+<div layout="column" layout-fill ng-controller="TeacherUnitController">
+  <md-toolbar>
+      <div class="md-toolbar-tools">
+
+        <md-button class="md-icon-button md-secondary" aria-label="Settings" ng-click="openLeftMenu()" hide-gt-md>
+            <md-icon class="material-icons"> menu </md-icon>
+        </md-button> 
+
+          <span>{{ params.unitId }}</span>
+      
+      </div>
+  </md-toolbar>
+
+  <md-content layout="row">
+      <md-content flex>
+
+              <md-list >
+                <div ng-repeat="lecture in lectures" >
+                  <md-list-item ng-click="expand()">
+                    <div class="md-list-item-text">
+                      <md-checkbox class="md-secondary" ng-model="lecture.finished"></md-checkbox>
+                      <p>{{lecture.title}}</p>
+                    </div>
+                  </md-list-item>
+                  
+                  <div class="collapsable" ng-show="lecture.open">
+                    <md-list-item ng-repeat="question in lecture.questions" ng-click="openQuestion()">
+                      <p>{{ question.text }}</p>
+                      <md-icon class="material-icons md-secondary" ng-click="doSecondaryAction($event)" aria-label="Start Poll"> play_circle_outline </md-icon>
+                    </md-list-item>                    
+                  </div>
+
+                </div>
+
+                <md-list-item ng-click="navigateTo()">
+                    <p>ADD +</p>
+                </md-list-item>
+
+              </md-list>
+
+      </md-content>
+      <md-content layout-padding flex hide show-gt-md ng-controller="QuestionController">
+
+          <md-card style="max-width: 960px;">
+           <md-card-content>
+             <h2 class="md-title">Question Editor</h2>
+
+            <md-input-container >
+              <!-- Use floating placeholder instead of label -->
+              <md-icon class="material-icons"> poll </md-icon>
+              <input type="text" placeholder="Question" ng-required="true">
+            </md-input-container>
+
+            <md-input-container ng-repeat="answer in answers" ng-click="expand()">
+              <!-- Use floating placeholder instead of label -->
+              <md-icon class="material-icons"> chat_bubble_outline </md-icon>
+              <input type="text" placeholder="Answer" ng-required="true" ng-model="answer">
+            </md-input-container>
+
+
+           </md-card-content>
+           <div class="md-actions" layout="row" layout-align="end center">
+             <md-button>Delete</md-button>
+             <md-button>Copy</md-button>
+             <md-button>Save</md-button>
+           </div>
+          </md-card>
+
+
+          <h1 class="md-display-1"></h1>
+      </md-content>
+  </md-content>
+</div>
+
+
+

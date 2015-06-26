@@ -1,0 +1,44 @@
+<div layout="column" layout-fill>
+<!-- layout-fill prevents whole screen scrolling -->
+
+  <md-toolbar>
+    <div class="md-toolbar-tools">
+      <span>melts</span>
+      <!-- TODO Add logout button top right -->
+    </div>
+  </md-toolbar>
+
+
+  <md-content layout-fill class="md-hue-1">
+
+    <div ng-show="subscriptions.length < 1" layout-fill layout="column" layout-align="center center">
+      <div>Hi there! Hit the plus to join.</div>
+      <div>image here ... </div>
+    </div>
+
+    <div ng-show="subscriptions.length > 0 && !activePoll" layout-fill layout="column" layout-align="center center">
+      Waiting for a poll...
+      <div>image here ... </div>
+    </div>
+
+    <div ng-show="activePoll" class="max-width-960">
+      <md-subheader class="md-no-sticky md-hue-1">Active Polls</md-subheader>
+      <md-card ng-repeat="poll in subscriptions | filter: { activePoll: true }">
+        <md-card-content>
+          <h2 class="md-title">{{ poll.collection }}</h2>
+          <p>{{ poll.question }}</p>
+        </md-card-content>
+        <div class="md-actions" layout="row" layout-align="end center">
+          <md-button ng-click="navigateTo('/answer/123456789')" class="md-primary">Answer</md-button>
+        </div>
+      </md-card>
+    </div>
+
+  </md-content>
+  
+
+  <md-button class="md-fab md-fab-bottom-right" aria-label="Join Feed" ng-click="showAlert($event)">
+    <md-icon class="material-icons"> add </md-icon>
+  </md-button>
+
+</div>

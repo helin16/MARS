@@ -1,0 +1,32 @@
+<div layout="column" layout-fill>
+
+    <md-toolbar>
+      <div class="md-toolbar-tools">
+        <span>melts</span>
+        <!-- TODO Add logout button top right -->
+      </div>
+    </md-toolbar>
+
+    <md-content layout-fill class="md-hue-1">
+
+      <div ng-show="!question" layout-fill layout="column" layout-align="center center">
+        <div>It looks like this poll is no longer running.</div>
+        <div>image here</div>
+      </div>
+
+      <div ng-show="question" class="max-width-960">
+        <md-card ng-hide="!question">
+          <md-card-content>
+            <h2 class="md-title">{{ question }}</h2>
+            <md-radio-group class="md-primary">
+              <md-radio-button ng-repeat="answer in answers" ng-value="answer.value">
+                {{ answer.label }}
+              </md-radio-button>
+            </md-radio-group>
+          </md-card-content>
+        </md-card>
+      </div>
+
+    </md-content>
+
+</div>

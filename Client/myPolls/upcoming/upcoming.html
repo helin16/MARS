@@ -1,0 +1,30 @@
+<md-toolbar>
+  <div class="md-toolbar-tools">
+    <md-button class="md-icon-button md-secondary" aria-label="Settings" ng-click="openLeftMenu()" hide-gt-md>
+      <md-icon class="material-icons"> menu </md-icon>
+    </md-button> 
+  </div>
+</md-toolbar>
+
+<md-content layout-fill class="md-hue-1">
+
+  <div ng-show="false" layout-fill layout="column" layout-align="center center">
+    <div>Hi there! Hit the plus to join.</div>
+    <div>image here ... </div>
+  </div>
+
+  <div ng-show="true" class="max-width-960">
+    <md-subheader class="md-no-sticky md-hue-1">Upcoming Polls</md-subheader>
+    <md-card ng-repeat="group in upcoming | filter: {done: false}">        
+      <md-list>
+        <md-list-item>
+        <h2 class="md-title">{{ group.collection }} - {{ group.group }}</h2>
+        </md-list-item>
+        <md-list-item ng-repeat="poll in group.polls" ng-click="navigateTo('/myPolls/upcoming')">
+          <p>{{ poll.question }}</p>
+        </md-list-item>
+      </md-list>    
+    </md-card>
+  </div>
+
+</md-content>

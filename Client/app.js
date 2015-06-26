@@ -1,28 +1,84 @@
-var app = angular.module('melts', ['ngMaterial']);
+var app = angular.module('melts', ['ngMaterial', 'ngRoute']);
 
-app.controller('MainController', function($scope, $mdSidenav) {
-  $scope.openLeftMenu = function() {
-    $mdSidenav('left').toggle();
-  };
+app.controller('MainController', function($scope, $route, $routeParams, $location, $mdSidenav) {
+	$scope.$route = $route;
+	$scope.$location = $location;
+	$scope.$routeParams = $routeParams;
 
-  $scope.units = [
-  {title: "ENG1001", description: "yo"},
-  {title: "ENG1002", description: "yo2"},
-  {title: "ENG1003", description: "yo3"}
-  ]
+	$scope.openLeftMenu = function() {
+		$mdSidenav('left').toggle();
+	};
 
-  $scope.questions = [
-  {title: "Lecture 1", description: "yo"},
-  {title: "Lecture 2", description: "yo2"},
-  {title: "Lecture 3", description: "yo2"},
-  {title: "Lecture 4", description: "yo2"},
-  {title: "Lecture 5", description: "yo2"},
-  {title: "Lecture 6", description: "yo2"},
-  {title: "Lecture 7", description: "yo2"},
-  {title: "Lecture 8", description: "yo2"},
-  {title: "Lecture 9", description: "yo2"},
-  {title: "Lecture 10", description: "yo2"},
-  {title: "Lecture 11", description: "yo2"},
-  {title: "Lecture 12", description: "yo3"}
-  ]
-});
+	$scope.navigateTo = function(url, event) {
+		$location.path(url);
+	};
+})
+
+
+
+.config(function($routeProvider, $locationProvider, $mdThemingProvider) {
+
+	$mdThemingProvider.theme('default')
+		.primaryPalette('blue-grey')
+		.accentPalette('blue')
+		.backgroundPalette('grey', {
+			'hue-1': '100'
+		})
+
+	$routeProvider
+	
+	// Default Root Route
+	.when('/', {
+		redirectTo: '/answer'
+	})
+
+	// Answer Routes
+	.when('/answer', {
+		templateUrl: 'answer/home/home.html',
+		controller: 'AnswerHomeController'
+	})
+	.when('/answer/:pollId', {
+		templateUrl: 'answer/poll/poll.html',
+		controller: 'AnswerPollController'
+	})
+
+	// My Polls Routes
+	.when('/myPolls', {
+		redirectTo: '/myPolls/upcoming'
+	})
+	.when('/myPolls/upcoming', {
+		templateUrl: 'myPolls/upcoming/upcoming.html',
+		controller: 'UpcomingController'
+	})
+	.when('/myPolls/collections', {
+		templateUrl: 'myPolls/collections/collections.html',
+		controller: 'CollectionsController'
+	})
+	.when('/myPolls/collections/:collectionId', {
+		templateUrl: 'myPolls/collections/collections.html',
+		controller: 'CollectionsController'
+	})
+	.when('/myPolls/collections/:collectionId/questions/:questionId', {
+		templateUrl: 'myPolls/collections/collections.html',
+		controller: 'CollectionsController'
+	})
+	.when('/myPolls/trash', {
+		templateUrl: 'myPolls/trash/trash.html',
+		controller: 'TrashController'
+	})
+	.when('/myPolls/settings', {
+		templateUrl: 'myPolls/settings/settings.html',
+		controller: 'SettingsController'
+	})
+	.when('/myPolls/support', {
+		templateUrl: 'myPolls/support/support.html',
+		controller: 'SupportController'
+	})
+
+	// Results Routes
+	.when('/results/:pollId', {
+		templateUrl: 'results/view/view.html',
+		controller: 'PollResultsController'
+	})
+
+ });
