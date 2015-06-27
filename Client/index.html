@@ -12,10 +12,9 @@
     <link rel="stylesheet" type="text/css" href="common/bg-gray.css">
 
 </head>
-<body lang="en" ng-app="melts" ng-controller="MainController">
+<body lang="en" ng-app="melts" ng-controller="MainController" layout="column">
 
-    <div layout="row" layout-fill >
-
+    <div layout="row" layout-fill>
         <md-sidenav
             ng-show="$location.path().split('/')[1] === 'myPolls'"
             ng-include="'myPolls/sideNav/sideNav.html'"
@@ -25,8 +24,10 @@
             layout="column">
         </md-sidenav>
 
-        <ng-view layout="column" layout-fill> </ng-view>
-        
+        <ng-view layout="column" layout-fill>
+            <!-- Page content is displayed here -->
+        </ng-view>
+
     </div>
 
     <script type="text/javascript" src="bower_components/angular/angular.js"></script>
