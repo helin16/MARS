@@ -11,6 +11,7 @@ app.controller('MainController', function($scope, $route, $routeParams, $locatio
 
 	$scope.navigateTo = function(url, event) {
 		$location.path(url);
+		$mdSidenav('left').close();
 	};
 })
 
@@ -55,12 +56,12 @@ app.controller('MainController', function($scope, $route, $routeParams, $locatio
 		controller: 'CollectionsController'
 	})
 	.when('/myPolls/collections/:collectionId', {
-		templateUrl: 'myPolls/collections/collections.html',
-		controller: 'CollectionsController'
+		templateUrl: 'myPolls/collections/editCollection/editCollection.html',
+		controller: 'EditCollectionController'
 	})
 	.when('/myPolls/collections/:collectionId/questions/:questionId', {
-		templateUrl: 'myPolls/collections/collections.html',
-		controller: 'CollectionsController'
+		templateUrl: 'myPolls/collections/editCollection/editQuestion/editQuestion.html',
+		controller: 'EditQuestionController'
 	})
 	.when('/myPolls/trash', {
 		templateUrl: 'myPolls/trash/trash.html',

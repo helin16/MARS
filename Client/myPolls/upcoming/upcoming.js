@@ -1,6 +1,6 @@
 app.controller('UpcomingController', function($scope, $routeParams) {
 
-	$scope.done = function () {
+	$scope.markGroupAsFinished = function () {
 		$scope.upcoming[0].done = true;
 	}
 
@@ -9,6 +9,7 @@ app.controller('UpcomingController', function($scope, $routeParams) {
 	$scope.upcoming = [
 		{
 			collection: "ENG1003",
+			color: "blue",
 			group: "Lecture 4",
 			polls: [
 				{
@@ -28,6 +29,7 @@ app.controller('UpcomingController', function($scope, $routeParams) {
 		},
 		{
 			collection: "ECE2064",
+			color: "green",
 			group: "Lecture 3",
 			polls: [
 				{
@@ -44,6 +46,7 @@ app.controller('UpcomingController', function($scope, $routeParams) {
 		},
 		{
 			collection: "ECE5011",
+			color: "red",
 			group: "Lecture 3",
 			polls: [
 				{

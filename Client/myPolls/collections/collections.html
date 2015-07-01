@@ -6,38 +6,56 @@
   </div>
 </md-toolbar>
 
-<md-content layout-fill class="md-hue-1">
+<md-content flex layout-padding class="md-hue-1" >
 
-  <div ng-show="true" class="max-width-960">
+  <div ng-show="true" class="max-width-960" >
+
     <md-subheader class="md-no-sticky md-hue-1">My Collections</md-subheader>
-    <md-card ng-repeat="collection in collections">
 
-  <md-toolbar class="md-hue-3">
-    <div class="md-toolbar-tools">
-      {{ collection.name }}
-      <span flex></span>
-      <md-button class="md-icon-button" ng-click="answer('not applicable')">
-        <md-icon class="material-icons"> more_vert </md-icon>
-      </md-button>
+    <div ng-repeat="collection in collections">
+      <md-card>
+
+        <md-toolbar class="bg-{{collection.color}}">
+          <div class="md-toolbar-tools">
+            {{ collection.name }}
+            <span flex></span>
+            
+            <md-button ng-click="addCollaborators($event)" class="md-icon-button" aria-label="Add collaborators">
+             <md-icon md-menu-origin class="material-icons"> person_add </md-icon>
+            </md-button>
+
+            <md-menu md-position-mode="target-right target">
+              <!-- Trigger element is a md-button with an icon -->
+              <md-button ng-click="$mdOpenMenu()" class="md-icon-button" aria-label="Open collection menu">
+               <md-icon md-menu-origin class="material-icons"> more_vert </md-icon>
+              </md-button>
+              <md-menu-content width="4">
+               <md-menu-item><md-button ng-click="doSomething()">Analytics</md-button></md-menu-item>
+               <md-menu-item><md-button ng-click="doSomething()">Duplicate</md-button></md-menu-item>
+               <md-menu-item><md-button ng-click="doSomething()">Leave Collection</md-button></md-menu-item>
+               <md-menu-item><md-button ng-click="doSomething()">Delete Collection</md-button></md-menu-item>
+             </md-menu-content>
+            </md-menu>
+          </div>
+        </md-toolbar>
+
+        <md-card-content>
+          <p class="md-subhead">Created: {{ collection.created }}</p>
+          <span>Collaborators:</span>
+          <span class="md-subhead" ng-repeat="user in collection.collaborators">{{ user }} </span>
+          <p ng-repeat="poll in group.polls">
+            {{ poll.question }}
+          </p>
+        </md-card-content>
+
+        <div class="md-actions" layout="row" layout-align="end center">
+          <md-button ng-click="navigateTo( '/myPolls/collections/' + collection.id )" class="md-primary">Edit</md-button>
+        </div>
+
+      </md-card>
+      <br>
     </div>
-  </md-toolbar>
 
-
-      <md-card-content>
-        
-        
-        <p class="md-subhead">Created: {{ collection.created }}</p>
-        <span>Collaborators:</span>
-        <span class="md-subhead" ng-repeat="user in collection.collaborators">{{ user }} </span>
-        <p ng-repeat="poll in group.polls">
-          {{ poll.question }}
-        </p>
-      </md-card-content>
-      <div class="md-actions" layout="row" layout-align="end center">
-        <md-button ng-click="navigateTo()" class="md-primary">Collaborate</md-button>
-        <md-button ng-click="navigateTo()" class="md-primary">Edit</md-button>
-      </div>
-    </md-card>
   </div>
 
 </md-content>

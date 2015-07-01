@@ -6,7 +6,7 @@
   </div>
 </md-toolbar>
 
-<md-content class="md-hue-1">
+<md-content flex layout-padding class="md-hue-1">
 
   <div ng-show="false" layout-fill layout="column" layout-align="center center">
     <div>Hi there! Hit the plus to join.</div>
@@ -15,16 +15,27 @@
 
   <div ng-show="true" class="max-width-960">
     <md-subheader class="md-no-sticky md-hue-1">Upcoming Polls</md-subheader>
-    <md-card ng-repeat="group in upcoming | filter: {done: false}">        
-      <md-list>
-        <md-list-item>
-        <h2 class="md-title">{{ group.collection }} - {{ group.group }}</h2>
-        </md-list-item>
-        <md-list-item ng-repeat="poll in group.polls" ng-click="navigateTo('/myPolls/upcoming')">
-          <p>{{ poll.question }}</p>
-        </md-list-item>
-      </md-list>    
-    </md-card>
+    <div ng-repeat="group in upcoming | filter: {done: false}">
+      <md-card>
+
+        <md-toolbar class="bg-{{group.color}}">
+          <div class="md-toolbar-tools">
+            <h2 class="md-title">{{ group.collection }} - {{ group.group }}</h2>
+            <span flex></span>      
+            <md-button class="md-icon-button md-secondary" aria-label="Finished Group" ng-click="markGroupAsFinished()">
+              <md-icon class="material-icons"> check </md-icon>
+            </md-button> 
+          </div>
+        </md-toolbar>
+
+        <md-list>
+          <md-list-item ng-repeat="poll in group.polls" ng-click="navigateTo('/myPolls/upcoming')">
+            <p>{{ poll.question }}</p>
+          </md-list-item>
+        </md-list>    
+      </md-card>
+    <br>
+    </div>
   </div>
 
 </md-content>

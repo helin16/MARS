@@ -1,0 +1,29 @@
+<md-dialog aria-label="Add a collaborator">
+  <form>
+
+    <md-dialog-content>
+      
+      <h2 class="md-title">Add a collaborator</h2>
+      
+
+      <md-input-container class="md-icon-float" >
+        <label>Enter authcate</label>
+        <md-icon class="material-icons"> person </md-icon>
+        <input ng-model="joinCode" type="text">
+      </md-input-container>
+
+    </md-dialog-content>
+
+
+    <div class="md-actions" layout="row">
+      <md-button ng-click="cancel()" class="md-primary">
+        Cancel
+      </md-button>
+      <md-button ng-click="join()" class="md-primary">
+        Add
+      </md-button>
+    </div>
+
+
+  </form>
+</md-dialog>
