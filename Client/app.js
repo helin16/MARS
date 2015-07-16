@@ -51,6 +51,10 @@ app.controller('MainController', function($scope, $route, $routeParams, $locatio
 		templateUrl: 'myPolls/upcoming/upcoming.html',
 		controller: 'UpcomingController'
 	})
+	.when('/myPolls/livePoll/:pollId', {
+		templateUrl: 'myPolls/livePoll/livePoll.html',
+		controller: 'LivePollController'
+	})
 	.when('/myPolls/collections', {
 		templateUrl: 'myPolls/collections/collections.html',
 		controller: 'CollectionsController'
@@ -78,7 +82,7 @@ app.controller('MainController', function($scope, $route, $routeParams, $locatio
 
 	// Results Routes
 	.when('/results/:pollId', {
-		templateUrl: 'results/view/view.html',
+		templateUrl: 'results/viewResults.html',
 		controller: 'PollResultsController'
 	})
 

@@ -6,12 +6,54 @@
   </div>
 </md-toolbar>
 
-<div layout="row" layout-fill>
-	<md-content flex layout-padding class="md-hue-1">
-g
+<md-content layout="row" layout-fill>
+
+	<md-content layout-fill flex layout-padding class="md-hue-1">
+		<div class="max-width-960">
+		    <md-card>
+		      <md-card-content>
+		        <h2 class="md-title">What are the 5 datatypes in JavaScript?</h2>
+		        <p>
+		          Numbers, Objects, Arrays, Booleans, Strings
+		        </p>
+		        <p>
+		          Integers, Objects, Arrays, Booleans, Strings
+		        </p>
+		        <p>
+		          Integers, Classes, Arrays, Booleans, Strings
+		        </p>
+		        <p>
+		          Numbers, Classes, Arrays, Booleans, Strings
+		        </p>
+		      </md-card-content>
+		      <div class="md-actions" layout="row" layout-align="end center">
+		        <md-button>Run</md-button>
+		        <md-button>Save</md-button>
+		      </div>
+		    </md-card>
+		</div>
 	</md-content>
 
-	<md-content flex layout-padding class="md-hue-1">
-g
-	</md-content>
-</div>
+    <md-sidenav
+        md-component-id="groups"
+        class="md-sidenav-right md-whiteframe-z2"
+        md-is-locked-open="$mdMedia('gt-md')"
+        layout="column">
+
+		<md-content flex class="md-whiteframe-z1">
+			<md-list>
+			  <md-list-item ng-repeat="group in groups" ng-click="openGroup()">
+			    <div class="md-list-item-text">
+			      <p>{{group.name}}</p>
+		          <div ng-show="group.open" ng-repeat="poll in group.polls" ng-click="openQuestion()">
+				    <p>{{ poll.question }}</p>
+				  </div>
+			    </div>
+			  </md-list-item>
+			</md-list>
+		</md-content>
+
+
+    </md-sidenav>
+
+</md-content>	
