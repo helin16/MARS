@@ -2,6 +2,13 @@
     <div class="md-toolbar-tools">
       <span>Melts</span>
       <!-- TODO Add logout button top right -->
+      <span flex></span>
+      <md-button class="md-icon-button" aria-label="Join Feed" ng-click="showAlert($event)">
+        <md-icon class="material-icons"> add </md-icon>
+      </md-button>
+      <md-button class="md-icon-button" aria-label="Logout">
+        <md-icon class="material-icons"> account_circle </md-icon>
+      </md-button>
     </div>
   </md-toolbar>
 
@@ -14,19 +21,6 @@
 
     <div ng-show="subscribed && activePolls.length === 0" class="no-content" layout="row" layout-align="center center">
       <div>Waiting for a poll...</div>
-    </div>
-
-    <div ng-show="activePolls.length > 0 && selectedPoll === null" class="max-width-960">
-      <md-subheader class="md-no-sticky md-hue-1">Active Polls</md-subheader>
-      <md-card ng-repeat="poll in activePolls">
-        <md-card-content>
-          <h2 class="md-title">{{ poll.collection }}</h2>
-          <p>{{ poll.question }}</p>
-        </md-card-content>
-        <div class="md-actions" layout="row" layout-align="end center">
-          <md-button ng-click="selectPoll(poll)" class="md-primary">Answer</md-button>
-        </div>
-      </md-card>
     </div>
 
     <div ng-show="selectedPoll" class="max-width-960">
@@ -46,11 +40,6 @@
     </div>
 
   </md-content>
-
-
-<!--   <md-button class="md-fab md-fab-bottom-right" aria-label="Join Feed" ng-click="showAlert($event)">
-    <md-icon class="material-icons"> queue </md-icon>
-  </md-button> -->
 
   <md-button ng-show="activePolls.length > 1" class="md-fab md-fab-bottom-right" aria-label="Switch Polls" ng-click="switchPolls($event)">
     <md-icon class="material-icons"> queue </md-icon>
