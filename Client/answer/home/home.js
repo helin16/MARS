@@ -14,29 +14,31 @@ app.controller('AnswerHomeController', function($scope, $routeParams, $location,
 	// Simulate retrieving active polls
 	$timeout(activePollsRecieved, 1500);
 
+	// Simulate recieving a new poll
+	$timeout(newPoll, 6000);
+
 	function activePollsRecieved() {
-		console.log("sdfa")
 		$scope.activePolls = [
-			{
-				collection: "ENG1001",
-				question: "What is this subject? An ideal inverting Op Amp?",
-				answers: [
-					{ label: 'The gain, G, would be 0.3333', value: 1 },
-					{ label: 'The gain, G, would be 3', value: 2 },
-					{ label: 'The gain, G, would be 3*10^4', value: 3 },
-					{ label: 'The gain, G, would be -3', value: 4 }
-				]
-			},
-			{
-				collection: "ENG1002",
-				question: "Assuming an ideal inverting Op Amp, what would the gain be, if R1 was 300k ohms and R2 was 100k?",
-				answers: [
-					{ label: 'The gain, G, would be 0.3333', value: 1 },
-					{ label: 'The gain, G, would be 3', value: 2 },
-					{ label: 'The gain, G, would be 3*10^4', value: 3 },
-					{ label: 'The gain, G, would be -3', value: 4 }
-				]
-			},
+			// {
+			// 	collection: "ENG1001",
+			// 	question: "What is this subject? An ideal inverting Op Amp?",
+			// 	answers: [
+			// 		{ label: 'The gain, G, would be 0.3333', value: 1 },
+			// 		{ label: 'The gain, G, would be 3', value: 2 },
+			// 		{ label: 'The gain, G, would be 3*10^4', value: 3 },
+			// 		{ label: 'The gain, G, would be -3', value: 4 }
+			// 	]
+			// },
+			// {
+			// 	collection: "ENG1002",
+			// 	question: "Assuming an ideal inverting Op Amp, what would the gain be, if R1 was 300k ohms and R2 was 100k?",
+			// 	answers: [
+			// 		{ label: 'The gain, G, would be 0.3333', value: 1 },
+			// 		{ label: 'The gain, G, would be 3', value: 2 },
+			// 		{ label: 'The gain, G, would be 3*10^4', value: 3 },
+			// 		{ label: 'The gain, G, would be -3', value: 4 }
+			// 	]
+			// },
 			{
 				collection: "ENG1003",
 				question: "How many different data types are there in JavaScript?",
@@ -53,6 +55,19 @@ app.controller('AnswerHomeController', function($scope, $routeParams, $location,
 		if ($scope.activePolls.length === 1) $scope.selectedPoll = $scope.activePolls[0];
 	}
 
+	function newPoll () {
+		$scope.activePolls.push({
+				collection: "ENG1004",
+				question: "A new unit full of potential?",
+				answers: [
+					{ label: 'The gain, G, would be 0.3333', value: 1 },
+					{ label: 'The gain, G, would be 3', value: 2 },
+					{ label: 'The gain, G, would be 3*10^4', value: 3 },
+					{ label: 'The gain, G, would be -3', value: 4 }
+				]
+			})
+	}
+
 	$scope.selectPoll = function (poll) {
 		console.log(poll)
 		$scope.selectedPoll = poll;
@@ -62,14 +77,6 @@ app.controller('AnswerHomeController', function($scope, $routeParams, $location,
 		console.log("Sending answers...")
 		$scope.selectedPoll = null;
 	}
-	// // TODO Add watch to keep track
-	// $scope.activePoll = false;
-
-	// for (var i in $scope.activePolls) {
-	// 	if ($scope.activePolls[i].selected === true) {
-	// 		$scope.selected = true;
-	// 	}
-	// }
 
 	$scope.alert = '';
 	$scope.showAlert = function(ev) {
