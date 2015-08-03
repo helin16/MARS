@@ -2,34 +2,31 @@ app.controller('PollResultsController', function($scope, $routeParams, $location
 	// TODO: Request melts code and results
 
 	$scope.pollCode = "QF177" 
-	$scope.highestVotes = 0;
+	$scope.highestVotes = 4;
 
 	$scope.results = [
-		{ option: "Answer 1", votes: 13 },
-		{ option: "Answer 2", votes: 5 },
-		{ option: "Answer 3", votes: 15 },
-		{ option: "Answer 4", votes: 15 },
-		{ option: "Answer 4", votes: 15 },
-		{ option: "Answer 4", votes: 15 },
-		{ option: "Answer 4", votes: 15 },
-		{ option: "Answer 4", votes: 15 },
-		{ option: "Answer 4", votes: 15 },
-		{ option: "Answer 4", votes: 15 },
+		{ option: "Answer 1", votes: 0 },
+		{ option: "Answer 2", votes: 0 },
+		{ option: "Answer 3", votes: 0 },
+		{ option: "Answer 3", votes: 0 },
 	] 
 
 	// Simulate new votes
 	$interval(newVotes, 500);
 
 	function newVotes() {
-		for (var i = 0; i < $scope.results.length; i++) {
-			$scope.results[i].votes += Math.floor(Math.random()*5) - 2;
-		}
+		$scope.results.forEach(function(x,i,a) {
+			a[i].votes += Math.floor(Math.random()*2)
+		});
 
-		for (var i = 0; i < $scope.results.length; i++) {
-			if ($scope.results[i].votes > $scope.highestVotes) {
-				$scope.highestVotes = $scope.results[i].votes;
-			}
-		}
+		var highest = 0;
+
+		$scope.results.forEach(function(x) {
+			if (x.votes > highest)
+				highest = x.votes;
+		});
+
+		$scope.highestVotes = highest;
 	}
 
 
@@ -68,7 +65,7 @@ app.controller('PollResultsController', function($scope, $routeParams, $location
 	// Assign colors
 	for (var i = 0; i < $scope.results.length; i++)
 	{
-		col = HSVtoRGB(0+i*360/$scope.results.length,0.5,0.8);
+		col = HSVtoRGB(0+i*360/$scope.results.length,0.6,0.8);
 		$scope.results[i].color = '#' + col.r + col.g + col.b;
 	}
 

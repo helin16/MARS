@@ -1,34 +1,35 @@
 <!-- TODO: fix this mess -->
-<div style="margin: 10%; height: 100%; position: relative">
-	<div style="z-index: 10; position: absolute; height: 7em;">
-		<span style="font-size: 3em; color: #555;">melts.me</span>
-		<span style="font-size: 3em; font-weight: 900; color: #999; padding-left: 20px;">{{ pollCode }}</span>
-	</div>
-	<div style="width: 100%; position: absolute; bottom: 0; top: 8.2em; z-index: 1;">
-		<div ng-repeat="result in results"
-			style="
-			background-color: {{ result.color }};
-			height: {{ result.votes / highestVotes * 100 }}%;
-			width: {{ 100 / results.length }}%;
-			float: left;
-			position: absolute;
-			bottom: 1.2em;
-			left: {{ $index * 100 / results.length }}%;
-			">
-			<div
+<md-content flex class="md-hue-1">
+
+		<div style="z-index: 10; position: absolute; height: 7em; left: 5%; top: 1.2em;">
+			<span style="font-size: 3em; color: #555;">melts.me</span>
+			<span style="font-size: 3em; font-weight: 900; color: #999; padding-left: 20px;">{{ pollCode }}</span>
+		</div>
+		<div style="width: 90%; left: 5%; right: 5%; position: absolute; bottom: 3em; top: 8.2em; z-index: 1;">
+			<div ng-repeat="result in results"
 				style="
+				background-color: {{ result.color }};
+				height: {{ result.votes / highestVotes * 100 }}%;
+				width: {{ 100 / results.length }}%;
+				float: left;
 				position: absolute;
-				bottom: -1.2em;
-				font-size: 2em;
-				width: 100%;
-				text-align: center;
-				text-overflow: ellipsis;
-				white-space: nowrap;
-				overflow: hidden;
-				color: #555;
+				bottom: 1.2em;
+				left: {{ $index * 100 / results.length }}%;
 				">
-					{{ result.option }}
+				<div
+					style="
+					position: absolute;
+					bottom: -1.2em;
+					font-size: 2em;
+					width: 100%;
+					text-align: center;
+					text-overflow: ellipsis;
+					white-space: nowrap;
+					overflow: hidden;
+					color: #555;
+					">
+						{{ result.option }}
+				</div>
 			</div>
 		</div>
-	</div>
-</div>
+</md-content>
