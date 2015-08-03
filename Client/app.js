@@ -7,6 +7,7 @@ app.controller('MainController', function($scope, $route, $routeParams, $locatio
 
 	$scope.openLeftMenu = function() {
 		$mdSidenav('left').toggle();
+		$mdSidenav('groups').close(); // TODO: Find a way to do this in editcollection ctrlr
 	};
 
 	$scope.navigateTo = function(url, event) {
@@ -20,8 +21,8 @@ app.controller('MainController', function($scope, $route, $routeParams, $locatio
 .config(function($routeProvider, $locationProvider, $mdThemingProvider) {
 
 	$mdThemingProvider.theme('default')
-		.primaryPalette('blue-grey')
-		.accentPalette('blue')
+		.primaryPalette('blue')
+		.accentPalette('red')
 		.backgroundPalette('grey', {
 			'hue-1': '100'
 		})

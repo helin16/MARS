@@ -1,6 +1,8 @@
 app.controller('EditCollectionController', function($scope, $routeParams, $mdSidenav, $mdDialog) {
 	
-	$mdSidenav('groups').open();
+	$scope.openQuestionList = function() {
+		$mdSidenav('groups').toggle();
+	};
 
 	$scope.groups = [
 		{

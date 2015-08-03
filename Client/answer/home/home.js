@@ -21,33 +21,36 @@ app.controller('AnswerHomeController', function($scope, $routeParams, $location,
 	function activePollsRecieved() {
 		$scope.activePolls = [
 			{
+				id: "1928he98eh219e21e9",
 				collection: "ENG1001",
 				question: "What is this subject? An ideal inverting Op Amp?",
 				answers: [
-					{ label: 'The gain, G, would be 0.3333' },
-					{ label: 'The gain, G, would be 3' },
-					{ label: 'The gain, G, would be 3*10^4' },
-					{ label: 'The gain, G, would be -3' }
+					{ id: 0, label: 'The gain, G, would be 0.3333' },
+					{ id: 1, label: 'The gain, G, would be 3' },
+					{ id: 2, label: 'The gain, G, would be 3*10^4' },
+					{ id: 3, label: 'The gain, G, would be -3' }
 				]
 			},
 			{
+				id: "1928he98eh219e2110",
 				collection: "ENG1002",
 				question: "Assuming an ideal inverting Op Amp, what would the gain be, if R1 was 300k ohms and R2 was 100k?",
 				answers: [
-					{ label: 'The gain, G, would be 0.3333' },
-					{ label: 'The gain, G, would be 3' },
-					{ label: 'The gain, G, would be 3*10^4' },
-					{ label: 'The gain, G, would be -3' }
+					{ id: 0, label: 'The gain, G, would be 0.3333' },
+					{ id: 1, label: 'The gain, G, would be 3' },
+					{ id: 2, label: 'The gain, G, would be 3*10^4' },
+					{ id: 3, label: 'The gain, G, would be -3' }
 				]
 			},
 			{
+				id: "1928he98eh219e2111",
 				collection: "ENG1003",
 				question: "How many different data types are there in JavaScript?",
 				answers: [
-					{ label: 'The gain, G, would be 0.3333' },
-					{ label: 'The gain, G, would be 3' },
-					{ label: 'The gain, G, would be 3*10^4' },
-					{ label: 'The gain, G, would be -3' }
+					{ id: 0, label: 'The gain, G, would be 0.3333' },
+					{ id: 1, label: 'The gain, G, would be 3' },
+					{ id: 2, label: 'The gain, G, would be 3*10^4' },
+					{ id: 3, label: 'The gain, G, would be -3' }
 				]
 			}
 		];
@@ -60,13 +63,14 @@ app.controller('AnswerHomeController', function($scope, $routeParams, $location,
 
 	function newPoll () {
 		$scope.activePolls.push({
+				id: "1928he98eh219e2112",
 				collection: "ENG1004",
 				question: "A new unit full of potential?",
 				answers: [
-					{ label: 'The gain, G, would be 0.3333', value: 1 },
-					{ label: 'The gain, G, would be 3', value: 2 },
-					{ label: 'The gain, G, would be 3*10^4', value: 3 },
-					{ label: 'The gain, G, would be -3', value: 4 }
+					{ id: 0, label: 'The gain, G, would be 0.3333' },
+					{ id: 1, label: 'The gain, G, would be 3' },
+					{ id: 2, label: 'The gain, G, would be 3*10^4' },
+					{ id: 3, label: 'The gain, G, would be -3' }
 				]
 			})
 
@@ -96,6 +100,7 @@ app.controller('AnswerHomeController', function($scope, $routeParams, $location,
 
 	$scope.submitAnswer = function () {
 		console.log("sending answer");
+		// send poll id and answer through socket io
 	}
 
 	$scope.alert = '';

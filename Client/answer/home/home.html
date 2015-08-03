@@ -27,8 +27,8 @@
       <md-card>
         <md-card-content>
           <h2 class="md-title">{{ selectedPoll.question }}</h2>
-          <md-radio-group class="md-primary">
-            <md-radio-button ng-repeat="answer in selectedPoll.answers" ng-value="false" ng-model="$parent" ng-change="submitAnswer()">
+          <md-radio-group ng-model="selectedPoll.answer">
+            <md-radio-button ng-repeat="answer in selectedPoll.answers" value="{{ answer.id }}">
               {{ answer.label }}
             </md-radio-button>
           </md-radio-group>
