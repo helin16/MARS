@@ -16,7 +16,9 @@ app.controller('AnswerHomeController', function($scope, $routeParams, $location,
 	$timeout(activePollsRecieved, 1000);
 
 	// Simulate recieving a new poll
-	$timeout(newPoll, 1000);
+	$timeout(newPoll, 30000, true, 0);
+	$timeout(newPoll, 20000, true, 1);
+	$timeout(newPoll, 10000, true, 2);
 
 	function activePollsRecieved() {
 		$scope.activePolls = [
@@ -31,28 +33,6 @@ app.controller('AnswerHomeController', function($scope, $routeParams, $location,
 					{ id: 3, label: 'The gain, G, would be -3' }
 				]
 			},
-			{
-				id: "1928he98eh219e2110",
-				collection: "ENG1002",
-				question: "Assuming an ideal inverting Op Amp, what would the gain be, if R1 was 300k ohms and R2 was 100k?",
-				answers: [
-					{ id: 0, label: 'The gain, G, would be 0.3333' },
-					{ id: 1, label: 'The gain, G, would be 3' },
-					{ id: 2, label: 'The gain, G, would be 3*10^4' },
-					{ id: 3, label: 'The gain, G, would be -3' }
-				]
-			},
-			{
-				id: "1928he98eh219e2111",
-				collection: "ENG1003",
-				question: "How many different data types are there in JavaScript?",
-				answers: [
-					{ id: 0, label: 'The gain, G, would be 0.3333' },
-					{ id: 1, label: 'The gain, G, would be 3' },
-					{ id: 2, label: 'The gain, G, would be 3*10^4' },
-					{ id: 3, label: 'The gain, G, would be -3' }
-				]
-			}
 		];
 
 		// Set first poll as active poll
@@ -61,19 +41,45 @@ app.controller('AnswerHomeController', function($scope, $routeParams, $location,
 		}
 	}
 
-	function newPoll () {
-		$scope.activePolls.push({
+	function newPoll (i) {
+		var polls = [
+			{
 				id: "1928he98eh219e2112",
 				collection: "ENG1004",
 				question: "A new unit full of potential?",
 				answers: [
+					{ id: 3, label: 'The gain, G, would be -3' },
+					{ id: 2, label: 'The gain, G, would be 3*10^4' },
+					{ id: 1, label: 'The gain, G, would be 3' },
 					{ id: 0, label: 'The gain, G, would be 0.3333' },
+				]
+			},
+			{
+				id: "1928he98eh219e2110",
+				collection: "ENG1002",
+				question: "Assuming an ideal inverting Op Amp, what would the gain be, if R1 was 300k ohms and R2 was 100k?",
+				answers: [
+					{ id: 2, label: 'The gain, G, would be 3*10^4' },
+					{ id: 0, label: 'The gain, G, would be 0.3333' },
+					{ id: 3, label: 'The gain, G, would be -3' },
+					{ id: 1, label: 'The gain, G, would be 3' },
+				]
+			},
+			{
+				id: "1928he98eh219e2111",
+				collection: "ENG1003",
+				question: "How many different data types are there in JavaScript?",
+				answers: [
+					{ id: 0, label: 'The gain, G, would be 0.3333' },
+					{ id: 3, label: 'The gain, G, would be -3' },
 					{ id: 1, label: 'The gain, G, would be 3' },
 					{ id: 2, label: 'The gain, G, would be 3*10^4' },
-					{ id: 3, label: 'The gain, G, would be -3' }
 				]
-			})
+			}
+		]
 
+		$scope.activePolls.push(polls[i])
+		console.log($scope.activePolls)
 		if ($scope.activePolls.length === 1) {
 			$scope.selectedPoll = $scope.activePolls[0];
 		}

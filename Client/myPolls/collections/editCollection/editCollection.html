@@ -13,27 +13,36 @@
 		<div layout="row" layout-align="end center">
 		    <md-button class="md-icon-button" aria-label="Questions List" ng-click="openQuestionList()" hide-gt-md>
 		      <md-icon class="material-icons"> list </md-icon>
-		    </md-button> 
+		    </md-button>
+
 		</div>
 
     	<div class="max-width-960">
 
 		    <md-card>
 		      <md-card-content>
-		        <h2 class="md-title">What are the 5 datatypes in JavaScript?</h2>
-		        <p>
-		          Numbers, Objects, Arrays, Booleans, Strings
-		        </p>
-		        <p>
-		          Integers, Objects, Arrays, Booleans, Strings
-		        </p>
-		        <p>
-		          Integers, Classes, Arrays, Booleans, Strings
-		        </p>
-		        <p>
-		          Numbers, Classes, Arrays, Booleans, Strings
-		        </p>
 
+		      	<div layout="row">
+					<md-select ng-model="currentQuestion.type" placeholder="Choose a Question type">
+					  <md-option ng-value="opt" ng-repeat="opt in questionTypes">{{ opt }}</md-option>
+					</md-select>
+				</div>
+
+				<md-input-container>
+				  <label>Question</label>
+				  <input type="text" ng-model="currentQuestion.question" required md-maxlength="255">
+				</md-input-container>
+
+				<md-input-container ng-repeat="answer in currentQuestion.answers">
+				  <label>Option {{ $index + 1 }}</label>
+				  <input type="text" ng-model="answer.label" required md-maxlength="255">
+				</md-input-container>
+
+		      	<div layout="row">
+					<md-select ng-model="currentQuestion.showResults" placeholder="Show Results">
+					  <md-option ng-value="opt" ng-repeat="opt in showResultsOpts">{{ opt }}</md-option>
+					</md-select>
+				</div>
 		      </md-card-content>
 		      <div class="md-actions" layout="row" layout-align="end center">
 		        <md-button>Run</md-button>

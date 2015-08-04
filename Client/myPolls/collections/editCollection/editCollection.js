@@ -4,6 +4,22 @@ app.controller('EditCollectionController', function($scope, $routeParams, $mdSid
 		$mdSidenav('groups').toggle();
 	};
 
+	$scope.currentQuestion = {
+		id: "1928he98eh219e21e9",
+		question: "What is this subject? An ideal inverting Op Amp?",
+		type: "Poll",
+		showResults: "Show Results Live",
+		answers: [
+			{ id: 0, label: 'The gain, G, would be 0.3333' },
+			{ id: 1, label: 'The gain, G, would be 3' },
+			{ id: 2, label: 'The gain, G, would be 3*10^4' },
+			{ id: 3, label: 'The gain, G, would be -3' }
+		]
+	}
+
+	$scope.questionTypes = ["Poll", "Word Cloud", "Sketch"];
+	$scope.showResultsOpts = ["Show Results Live", "Show Results on Click", "Don't Show Results"];
+
 	$scope.groups = [
 		{
 			name: "Lecture 1",

@@ -2,20 +2,18 @@ app.controller('PollResultsController', function($scope, $routeParams, $location
 	// TODO: Request melts code and results
 
 	$scope.pollCode = "QF177" 
-	$scope.highestVotes = 10;
+	$scope.highestVotes = 100;
 
 	$scope.results = [
 		{ option: "Answer 1", votes: 0 },
 		{ option: "Answer 2", votes: 0 },
 		{ option: "Answer 3", votes: 0 },
-		{ option: "Answer 3", votes: 0 },
-		{ option: "Answer 3", votes: 0 },
-		{ option: "Answer 3", votes: 0 },
-		{ option: "Answer 3", votes: 0 },
+		{ option: "Answer 4", votes: 0 },
+		{ option: "Answer 5", votes: 0 },
 	] 
 
 	// Simulate new votes
-	$interval(newVotes, 200);
+	$interval(newVotes, 100);
 
 	function newVotes() {
 		$scope.results.forEach(function(x,i) {
@@ -28,7 +26,7 @@ app.controller('PollResultsController', function($scope, $routeParams, $location
 			if (x.votes > highest) highest = x.votes;
 		});
 
-		if (highest > 10) $scope.highestVotes = highest;
+		if (highest > 100) $scope.highestVotes = highest;
 	}
 
 
