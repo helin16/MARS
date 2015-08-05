@@ -1,5 +1,5 @@
-melts
-=====
+MARS
+====
 
 Monash eLearning Tools Audience Response System
 
