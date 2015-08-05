@@ -22,6 +22,7 @@
 		    <md-card>
 		      <md-card-content>
 
+		      	<h1 class="md-title">Question Type</h1>
 		      	<div layout="row">
 					<md-select ng-model="currentQuestion.type" placeholder="Choose a Question type">
 					  <md-option ng-value="opt" ng-repeat="opt in questionTypes">{{ opt }}</md-option>
@@ -38,11 +39,22 @@
 				  <input type="text" ng-model="answer.label" required md-maxlength="255">
 				</md-input-container>
 
-		      	<div layout="row">
-					<md-select ng-model="currentQuestion.showResults" placeholder="Show Results">
-					  <md-option ng-value="opt" ng-repeat="opt in showResultsOpts">{{ opt }}</md-option>
-					</md-select>
-				</div>
+
+
+		      <fieldset class="standard" flex>
+		        <legend>Options</legend>
+		        <div layout="row" layout-wrap>
+		          <div flex="50">
+			      	<div layout="row">
+					  <md-select ng-model="currentQuestion.showResults" placeholder="Show Results">
+					    <md-option ng-value="opt" ng-repeat="opt in showResultsOpts">{{ opt }}</md-option>
+				      </md-select>
+					</div>
+		          </div>
+		        </div>
+		      </fieldset>
+
+
 		      </md-card-content>
 		      <div class="md-actions" layout="row" layout-align="end center">
 		        <md-button>Run</md-button>

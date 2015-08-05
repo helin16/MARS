@@ -26,7 +26,11 @@
     <div ng-show="selectedPoll" class="max-width-960">
       <md-card>
         <md-card-content>
-          <h2 class="md-title">{{ selectedPoll.question }}</h2>
+          <h1 class="md-title">{{ selectedPoll.collection }}</h1>
+          <p>{{ selectedPoll.question }}</p>
+
+          <md-divider></md-divider>
+
           <md-radio-group ng-model="selectedPoll.answer">
             <md-radio-button ng-repeat="answer in selectedPoll.answers" value="{{ answer.id }}">
               {{ answer.label }}
