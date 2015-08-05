@@ -1,7 +1,7 @@
 MARS
 ====
 
-Monash eLearning Tools Audience Response System
+Monash Audience Response System
 
 
 Setting up the Client
