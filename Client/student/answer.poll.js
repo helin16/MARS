@@ -1,4 +1,4 @@
-app.controller('AnswerPollController', function($scope, $routeParams) {
+app.controller('AnswerPollController', function($scope) {
 	
 	// TODO Request $routeParams.pollId poll;
 	

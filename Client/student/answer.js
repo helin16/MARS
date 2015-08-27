@@ -1,4 +1,4 @@
-app.controller('AnswerHomeController', function($scope, $routeParams, $location, $mdDialog, $timeout) {
+app.controller('AnswerController', function($scope, $mdDialog, $timeout) {
 
 	// TODO Add service to pull feed
 
@@ -113,7 +113,7 @@ app.controller('AnswerHomeController', function($scope, $routeParams, $location,
 	$scope.showAlert = function(ev) {
 		$mdDialog.show({
       		controller: 'JoinFeedController',
-      		templateUrl: 'answer/home/joinFeed/joinFeed.html',
+      		templateUrl: 'student/answer.join.html',
       		parent: angular.element(document.body),
       		targetEvent: ev
     	})
