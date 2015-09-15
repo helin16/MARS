@@ -7,7 +7,7 @@ app.controller('EditCollectionController', function($scope, $routeParams, $mdSid
 	$scope.currentQuestion = {
 		id: "1928he98eh219e21e9",
 		question: "What is this subject? An ideal inverting Op Amp?",
-		type: "Poll",
+		type: "Multiple Choice",
 		showResults: "Show Results Live",
 		answers: [
 			{ id: 0, label: 'The gain, G, would be 0.3333' },
@@ -17,7 +17,7 @@ app.controller('EditCollectionController', function($scope, $routeParams, $mdSid
 		]
 	}
 
-	$scope.questionTypes = ["Poll", "Word Cloud", "Sketch"];
+	$scope.questionTypes = ["Multiple Choice", "Word Cloud", "Sketch"];
 	$scope.showResultsOpts = ["Show Results Live", "Show Results on Click", "Don't Show Results"];
 
 	$scope.groups = [

@@ -17,7 +17,7 @@ app.controller('PollResultsController', function($scope, $routeParams, $location
 
 	function newVotes() {
 		$scope.results.forEach(function(x,i) {
-			x.votes += Math.floor(Math.random()*2*i+1)
+			x.votes += Math.floor(Math.random()*2 + ((i+2)%2))
 		});
 
 		var highest = 0;
@@ -66,7 +66,7 @@ app.controller('PollResultsController', function($scope, $routeParams, $location
 	for (var i = 0; i < $scope.results.length; i++)
 	{
 		col = HSVtoRGB(0+i*360/$scope.results.length,0.6,0.8);
-		$scope.results[i].color = '#' + col.r + col.g + col.b;
+		$scope.results[i].color = '#2196F3'// + col.r + col.g + col.b;
 	}
 
 })

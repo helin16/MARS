@@ -1,4 +1,4 @@
-app.controller('AnswerHomeController', function($scope, $routeParams, $location, $mdDialog, $timeout) {
+app.controller('AnswerController', function($scope, $mdDialog, $timeout, $state) {
 
 	// TODO Add service to pull feed
 
@@ -24,6 +24,7 @@ app.controller('AnswerHomeController', function($scope, $routeParams, $location,
 		$scope.activePolls = [
 			{
 				id: "1928he98eh219e21e9",
+				pluginType: "poll",
 				collection: "ENG1001",
 				question: "What is this subject? An ideal inverting Op Amp?",
 				answers: [
@@ -38,6 +39,8 @@ app.controller('AnswerHomeController', function($scope, $routeParams, $location,
 		// Set first poll as active poll
 		if ($scope.activePolls.length > 0) {
 			$scope.selectedPoll = $scope.activePolls[0];
+			// Set the app state to answer.<pluginType>
+			$state.go('answer.plugin_' + $scope.selectedPoll.pluginType)
 		}
 	}
 
@@ -45,6 +48,7 @@ app.controller('AnswerHomeController', function($scope, $routeParams, $location,
 		var polls = [
 			{
 				id: "1928he98eh219e2112",
+				pluginType: "poll",
 				collection: "ENG1004",
 				question: "A new unit full of potential?",
 				answers: [
@@ -56,6 +60,7 @@ app.controller('AnswerHomeController', function($scope, $routeParams, $location,
 			},
 			{
 				id: "1928he98eh219e2110",
+				pluginType: "poll",
 				collection: "ENG1002",
 				question: "Assuming an ideal inverting Op Amp, what would the gain be, if R1 was 300k ohms and R2 was 100k?",
 				answers: [
@@ -67,6 +72,7 @@ app.controller('AnswerHomeController', function($scope, $routeParams, $location,
 			},
 			{
 				id: "1928he98eh219e2111",
+				pluginType: "poll",
 				collection: "ENG1003",
 				question: "How many different data types are there in JavaScript?",
 				answers: [
@@ -97,6 +103,7 @@ app.controller('AnswerHomeController', function($scope, $routeParams, $location,
 			$scope.pollIndex++;
 		}
 		$scope.selectedPoll = $scope.activePolls[$scope.pollIndex]
+		$state.go('answer.plugin_' + $scope.selectedPoll.pluginType)
 	}
 
 	// $scope.submit = function () {
@@ -113,7 +120,7 @@ app.controller('AnswerHomeController', function($scope, $routeParams, $location,
 	$scope.showAlert = function(ev) {
 		$mdDialog.show({
       		controller: 'JoinFeedController',
-      		templateUrl: 'answer/home/joinFeed/joinFeed.html',
+      		templateUrl: 'student/answer.join.html',
       		parent: angular.element(document.body),
       		targetEvent: ev
     	})

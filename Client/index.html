@@ -2,9 +2,14 @@
 <html>
 <head>
     <title>melts</title>
+
+    <meta name="viewport" content="initial-scale=1" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="mobile-web-app-capable" content="yes">
+
     <link rel="stylesheet" type="text/css" href="bower_components/angular-material/angular-material.css">
     <link rel="stylesheet" type="text/css" href="bower_components/roboto-fontface/css/roboto-fontface.css">
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"> 
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
     <link rel="stylesheet" type="text/css" href="common/max-width-960.css">
     <link rel="stylesheet" type="text/css" href="common/bg-colors.css">
@@ -12,44 +17,18 @@
 
 </head>
 <body lang="en" ng-app="melts" ng-controller="MainController" layout="column">
-
-    <div layout="row" layout-fill>
-        <md-sidenav
-            ng-show="$location.path().split('/')[1] === 'myPolls'"
-            ng-include="'myPolls/sideNav/sideNav.html'"
-            md-component-id="left"
-            class="md-sidenav-left md-whiteframe-z2"
-            md-is-locked-open="$mdMedia('gt-md')"
-            layout="column">
-        </md-sidenav>
-
-        <ng-view layout="column" layout-fill>
-            <!-- Page content is displayed here -->
-        </ng-view>
-    </div>
+    <div ui-view layout="column" layout-fill></div>
 
     <script type="text/javascript" src="bower_components/angular/angular.js"></script>
+    <script type="text/javascript" src="bower_components/angular-ui-router/release/angular-ui-router.min.js"></script>
     <script type="text/javascript" src="bower_components/angular-material/angular-material.js"></script>
     <script type="text/javascript" src="bower_components/angular-animate/angular-animate.js"></script>
     <script type="text/javascript" src="bower_components/angular-aria/angular-aria.js"></script>
-    <script type="text/javascript" src="bower_components/angular-route/angular-route.js"></script>
 
     <script type="text/javascript" src="app.js"></script>
 
-    <script type="text/javascript" src="results/viewResults.js"></script>
-
-    <script type="text/javascript" src="answer/home/home.js"></script>
-    <script type="text/javascript" src="answer/home/joinFeed/joinFeed.js"></script>
-    <script type="text/javascript" src="answer/poll/poll.js"></script>
-
-    <script type="text/javascript" src="myPolls/collections/collections.js"></script>
-    <script type="text/javascript" src="myPolls/collections/addCollaborators/addCollaborators.js"></script>
-    <script type="text/javascript" src="myPolls/collections/editCollection/editCollection.js"></script>
-    <script type="text/javascript" src="myPolls/settings/settings.js"></script>
-    <script type="text/javascript" src="myPolls/support/support.js"></script>
-    <script type="text/javascript" src="myPolls/trash/trash.js"></script>
-    <script type="text/javascript" src="myPolls/upcoming/upcoming.js"></script>
-    <script type="text/javascript" src="myPolls/livePoll/livePoll.js"></script>
-
+    <script type="text/javascript" src="student/answer.js"></script>
+    <script type="text/javascript" src="student/answer.join.js"></script>
+    <script type="text/javascript" src="plugins/poll/answer/answer.poll.js"></script>
 </body>
 </html>
