@@ -2,15 +2,15 @@ var app = angular.module('melts', ['ngMaterial', 'ui.router']);
 
 app.controller('MainController', function($scope, $mdSidenav) {
 
-	$scope.openLeftMenu = function() {
-		$mdSidenav('left').toggle();
-		$mdSidenav('groups').close(); // TODO: Find a way to do this in editcollection ctrlr
-	};
-
-	$scope.navigateTo = function(url, event) {
-		$location.path(url);
-		$mdSidenav('left').close();
-	};
+	// $scope.openLeftMenu = function() {
+	// 	$mdSidenav('left').toggle();
+	// 	$mdSidenav('groups').close(); // TODO: Find a way to do this in editcollection ctrlr
+	// };
+	//
+	// $scope.navigateTo = function(url, event) {
+	// 	$location.path(url);
+	// 	$mdSidenav('left').close();
+	// };
 })
 
 
@@ -30,36 +30,51 @@ app.controller('MainController', function($scope, $mdSidenav) {
 			.backgroundPalette('blue')
 			.dark();
 
-
 	// Routing
-	$urlRouterProvider.otherwise("/answer");
+	$urlRouterProvider.otherwise('/answer');
 
 	$stateProvider
 	.state('answer', {
-	  url: "/answer",
-	  templateUrl: "student/answer.html",
-	  controller: "AnswerController"
+	  url: '/answer',
+	  templateUrl: 'student/answer.html',
+	  controller: 'AnswerController'
 	})
-	.state('answer.poll', {
-	  url: "/poll",
-	  templateUrl: "student/answer.poll.html",
-	  controller: "AnswerPollController"
+	.state('answer.subscribed', {
+	  url: '/answer',
+	  templateUrl: 'student/answer.html',
+	  controller: 'AnswerController'
+	});
+
+
+	// TODO retrieve available plugins via AJAX
+	var plugins = ['poll', 'draw', 'wordcloud'];	// This is a temporary array to fake this data
+
+
+	// Generates a plugin's controller name based on it's plugin name
+	controllerName = function(pluginName) {
+	    return pluginName.charAt(0).toUpperCase() + pluginName.slice(1) + 'PluginController';
+	}
+
+	// Register 'answers', 'results' and 'settings' controllers and views for each plugin
+	plugins.forEach(function(plugin) {
+		$stateProvider
+			.state('answer.plugin_' + plugin, {
+			  templateUrl: 'plugins/' + plugin + '/answer/answer.' + plugin + '.html',
+			  controller: controllerName(plugin)
+			})
+			.state('results.plugin_' + plugin, {
+				templateUrl: 'plugins/' + plugin + '/results/results.' + plugin + '.html',
+			  controller: controllerName(plugin)
+			})
+			.state('settings.plugin_' + plugin, {
+				templateUrl: 'plugins/' + plugin + '/settings/settings.' + plugin + '.html',
+			  controller: controllerName(plugin)
+			})
 	})
-	// .state('state2', {
-	//   url: "/state2",
-	//   templateUrl: "partials/state2.html"
-	// })
-	// .state('state2.list', {
-	//   url: "/list",
-	//   templateUrl: "partials/state2.list.html",
-	//   controller: function($scope) {
-	//     $scope.things = ["A", "Set", "Of", "Things"];
-	//   }
-	// });
 
 
 	// $routeProvider
-	
+
 	// // Default Root Route
 	// .when('/', {
 	// 	redirectTo: '/answer'

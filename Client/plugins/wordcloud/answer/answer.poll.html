@@ -1,0 +1,16 @@
+
+<!--   <div ng-show="!question" layout-fill layout="column" layout-align="center center">
+    <div>It looks like this poll is no longer running.</div>
+    <div>image here</div>
+  </div> -->
+
+<md-card>
+  <md-card-content>
+    <h2 class="md-title">{{ question }}</h2>
+    <md-radio-group>
+      <md-radio-button ng-repeat="answer in answers" ng-value="answer.value">
+        {{ answer.label }}
+      </md-radio-button>
+    </md-radio-group>
+  </md-card-content>
+</md-card>
