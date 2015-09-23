@@ -14,10 +14,11 @@
     <link rel="stylesheet" type="text/css" href="common/max-width-960.css">
     <link rel="stylesheet" type="text/css" href="common/bg-colors.css">
     <link rel="stylesheet" type="text/css" href="common/no-content.css">
+    <link rel="stylesheet" type="text/css" href="common/layout-fix.css">
 
 </head>
 <body lang="en" ng-app="melts" ng-controller="MainController" layout="column">
-    <div ui-view layout="column" layout-fill></div>
+    <div ui-view layout="column" layout-fill style="background-color: rgb(245, 245, 245);"></div>
 
     <script type="text/javascript" src="bower_components/angular/angular.js"></script>
     <script type="text/javascript" src="bower_components/angular-ui-router/release/angular-ui-router.min.js"></script>
@@ -30,5 +31,10 @@
     <script type="text/javascript" src="student/answer.js"></script>
     <script type="text/javascript" src="student/answer.join.js"></script>
     <script type="text/javascript" src="plugins/poll/answer/answer.poll.js"></script>
+
+    <script type="text/javascript" src="myPolls/MyPollsController.js"></script>
+    <script type="text/javascript" src="myPolls/collections/CollectionsController.js"></script>
+    <script type="text/javascript" src="myPolls/upcoming/UpcomingController.js"></script>
+
 </body>
 </html>

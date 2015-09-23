@@ -1,4 +1,4 @@
-app.controller('UpcomingController', function($scope, $routeParams) {
+app.controller('UpcomingController', function($scope) {
 
 	$scope.markGroupAsFinished = function () {
 		$scope.upcoming[0].done = true;

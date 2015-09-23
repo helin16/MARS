@@ -1,36 +1,36 @@
 <md-toolbar class="md-hue-2">
   <div class="md-toolbar-tools">
-    Melts
+    Mars
   </div>
 </md-toolbar>
 
 <md-content>
   <md-list>
 
-    <md-list-item ng-click="navigateTo('/myPolls/upcoming')">
+    <md-list-item ng-click="goToState('myPolls.upcoming')">
         <md-icon class="material-icons"> insert_chart </md-icon>
         <p>Upcoming Polls</p>
     </md-list-item>
 
-    <md-list-item ng-click="navigateTo('/myPolls/collections')">
+    <md-list-item ng-click="goToState('myPolls.collections')">
         <md-icon class="material-icons"> library_books </md-icon>
         <p>Collections</p>
     </md-list-item>
 
-    <md-list-item ng-click="navigateTo('/myPolls/trash')">
+    <md-list-item ng-click="goToState('myPolls.trash')">
         <md-icon class="material-icons"> delete </md-icon>
         <p>Trash</p>
     </md-list-item>
 
-    <md-list-item ng-click="navigateTo('/myPolls/settings')">
+    <md-list-item ng-click="goToState('myPolls.settings')">
         <md-icon class="material-icons"> settings </md-icon>
         <p>Settings</p>
     </md-list-item>
 
-    <md-list-item ng-click="navigateTo('/myPolls/support')">
+    <md-list-item ng-click="goToState('myPolls.support')">
         <md-icon class="material-icons"> help </md-icon>
         <p>Help and Support</p>
     </md-list-item>
 
-  </md-list>    
+  </md-list>
 </md-content>
