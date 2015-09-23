@@ -2,15 +2,6 @@ var app = angular.module('melts', ['ngMaterial', 'ui.router']);
 
 app.controller('MainController', function($scope, $mdSidenav) {
 
-	// $scope.openLeftMenu = function() {
-	// 	$mdSidenav('left').toggle();
-	// 	$mdSidenav('groups').close(); // TODO: Find a way to do this in editcollection ctrlr
-	// };
-	//
-	// $scope.navigateTo = function(url, event) {
-	// 	$location.path(url);
-	// 	$mdSidenav('left').close();
-	// };
 })
 
 
@@ -30,21 +21,53 @@ app.controller('MainController', function($scope, $mdSidenav) {
 			.backgroundPalette('blue')
 			.dark();
 
-	// Routing
+	// Routing ///////////////////////////////////////////////////////////////////
 	$urlRouterProvider.otherwise('/answer');
 
+	// Routing for responses
 	$stateProvider
 	.state('answer', {
 	  url: '/answer',
 	  templateUrl: 'student/answer.html',
 	  controller: 'AnswerController'
 	})
+	.state('answer.notsubscribed', {
+	  templateUrl: 'student/answer.notsubscribed.html'
+	})
 	.state('answer.subscribed', {
-	  url: '/answer',
-	  templateUrl: 'student/answer.html',
-	  controller: 'AnswerController'
+	  templateUrl: 'student/answer.subscribed.html'
 	});
 
+	// Routing for myPolls
+	$stateProvider
+	.state('myPolls', {
+	  url: '/myPolls',
+	  templateUrl: 'myPolls/myPolls.html',
+	  controller: 'MyPollsController'
+	})
+	.state('myPolls.upcoming', {
+		url: '/upcoming',
+	  templateUrl: 'myPolls/upcoming/upcoming.html',
+		controller: 'UpcomingController'
+	})
+	.state('myPolls.collections', {
+		url: '/collections',
+	  templateUrl: 'myPolls/collections/collections.html',
+		controller: 'CollectionsController'
+	})
+	.state('myPolls.trash', {
+		url: '/trash',
+	  templateUrl: 'myPolls/trash/trash.html',
+
+	})
+	.state('myPolls.settings', {
+		url: '/settings',
+	  templateUrl: 'myPolls/settings/settings.html'
+	})
+	.state('myPolls.support', {
+		url: '/support',
+	  templateUrl: 'myPolls/support/support.html'
+	});
 
 	// TODO retrieve available plugins via AJAX
 	var plugins = ['poll', 'draw', 'wordcloud'];	// This is a temporary array to fake this data

@@ -1,4 +1,4 @@
-app.controller('CollectionsController', function($scope, $routeParams, $mdDialog) {
+app.controller('CollectionsController', function($scope, $mdDialog) {
 
 	$scope.collections = [
 		{

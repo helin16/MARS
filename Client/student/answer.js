@@ -1,10 +1,10 @@
 app.controller('AnswerController', function($scope, $mdDialog, $timeout, $state) {
 
-	// TODO Add service to pull feed
+	// TODO Add service to notify this controller of new questions
+	// NOTE: Upon recieving new questions, check if activeQuesitons length === 1 and if so, set it as selectedPoll otherwise just add it to activePolls
 
-	// TODO Add socket io service to live update feed
+	// TODO Add service to notify this controller of questions ending
 
-	// NOTE: Upon recieving new Polls through socket or on initial request, check if activePollsn length ===1 and if so, set it as selectedPoll otherwise just add it to activePolls
 
 	// Front page (holds all active polls from subscribed collections)
 	$scope.subscribed = true;
@@ -19,6 +19,12 @@ app.controller('AnswerController', function($scope, $mdDialog, $timeout, $state)
 	$timeout(newPoll, 30000, true, 0);
 	$timeout(newPoll, 20000, true, 1);
 	$timeout(newPoll, 10000, true, 2);
+
+	if ($scope.subscribed) {
+	  $state.go('answer.subscribed');
+	} else {
+		$state.go('answer.notsubscribed');
+	}
 
 	function activePollsRecieved() {
 		$scope.activePolls = [
