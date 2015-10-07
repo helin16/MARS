@@ -1,38 +1,23 @@
 <md-toolbar>
   <div class="md-toolbar-tools">
     <span>Mars</span>
-    <!-- TODO Add logout button top right -->
     <span flex></span>
-    <md-button class="md-icon-button" aria-label="Join Feed" ng-click="showAlert($event)">
+    <md-button class="md-icon-button" aria-label="Join Feed" ng-click="showJoinDialog($event)">
       <md-icon class="material-icons"> add </md-icon>
     </md-button>
-<!--     <md-button class="md-icon-button" aria-label="Logout">
-      <md-icon class="material-icons"> account_circle </md-icon>
-    </md-button>
- -->
-
-
-
 
     <md-menu md-position-mode="target-right target" >
       <md-button aria-label="Account" class="md-icon-button" ng-click="$mdOpenMenu($event)">
         <md-icon class="material-icons"> account_circle </md-icon>
       </md-button>
-      <md-menu-content width="4" >
-
+      <md-menu-content width="3" >
         <md-menu-item>
           <md-button ng-click="logout()">
-              <div layout="row">
-                <p flex>Sign out</p>
-              </div>
+            Sign out
           </md-button>
         </md-menu-item>
-
       </md-menu-content>
     </md-menu>
-
-
-
 
   </div>
 </md-toolbar>
@@ -40,17 +25,6 @@
 <!-- Polls go here -->
 <md-content flex layout-padding class="md-hue-1">
   <div ui-view class="max-width-960"></div>
-
-
-
-
-
-  <md-button ng-click="socketMe()">hello</md-button>
-
-
-
-
-
 </md-content>
 
 <!-- Button to change polls (if more than 1 exists) -->
