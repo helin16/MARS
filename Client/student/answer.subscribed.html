@@ -1,24 +1,4 @@
-    <div ng-show="!subscribed" class="no-content" class="no-content" layout="row" layout-align="center center">
-      <div>Hit the plus to join!</div>
-    </div>
-
-    <div ng-show="subscribed && activePolls.length === 0" class="no-content" layout="row" layout-align="center center">
-      <div>Waiting for a poll...</div>
-    </div>
-
-    <div ng-show="selectedPoll" class="max-width-960">
-      <md-card>
-        <md-card-content>
-          <h1 class="md-title">{{ selectedPoll.collection }}</h1>
-          <p>{{ selectedPoll.question }}</p>
-
-          <md-divider></md-divider>
-
-          <md-radio-group ng-model="selectedPoll.answer">
-            <md-radio-button ng-repeat="answer in selectedPoll.answers" value="{{ answer.id }}">
-              {{ answer.label }}
-            </md-radio-button>
-          </md-radio-group>
-        </md-card-content>
-      </md-card>
-    </div>
+<div class="no-content" flex layout="column" layout-align="center center">
+  <img style="width: 100px; padding: 20px;" class="mervin" ng-src="./common/img/happy.png" alt="alien waiting for questions"></img>
+  <div>Waiting for a poll...</div>
+</div>

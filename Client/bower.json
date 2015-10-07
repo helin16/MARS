@@ -22,10 +22,11 @@
     "tests"
   ],
   "dependencies": {
-    "roboto-fontface": "~0.4.2",
     "angular": "~1.4.0",
+    "angular-material": "master",
     "angular-route": "~1.4.0",
-    "angular-material": "master"
+    "angular-socket-io": "~0.7.0",
+    "roboto-fontface": "~0.4.2"
   },
   "resolutions": {
     "angular": "~1.4.0"

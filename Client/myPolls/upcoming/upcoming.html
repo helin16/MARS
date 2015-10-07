@@ -1,16 +1,8 @@
-<md-toolbar>
-  <div class="md-toolbar-tools">
-    <md-button class="md-icon-button md-secondary" aria-label="Settings" ng-click="openLeftMenu()" hide-gt-md>
-      <md-icon class="material-icons"> menu </md-icon>
-    </md-button> 
-  </div>
-</md-toolbar>
-
 <md-content flex layout-padding class="md-hue-1">
 
   <div ng-show="false" layout-fill layout="column" layout-align="center center">
     <div>Hi there! Hit the plus to join.</div>
-    <div>image here ... </div>
+    <img style="width: 100px; padding: 20px;" class="mervin" ng-src="./common/img/happy.png" alt="Mervin, the happy alien."></img>
   </div>
 
   <div ng-show="true" class="max-width-960">
@@ -21,10 +13,10 @@
         <md-toolbar class="bg-{{group.color}}">
           <div class="md-toolbar-tools">
             <h2 class="md-title">{{ group.collection }} - {{ group.group }}</h2>
-            <span flex></span>      
+            <span flex></span>
             <md-button class="md-icon-button md-secondary" aria-label="Finished Group" ng-click="markGroupAsFinished()">
               <md-icon class="material-icons"> check </md-icon>
-            </md-button> 
+            </md-button>
           </div>
         </md-toolbar>
 
@@ -32,7 +24,7 @@
           <md-list-item ng-repeat="poll in group.polls" ng-click="navigateTo('/results/QF177')">
             <p>{{ poll.question }}</p>
           </md-list-item>
-        </md-list>    
+        </md-list>
       </md-card>
     <br>
     </div>
