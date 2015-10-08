@@ -4,9 +4,17 @@
   </md-card-content>
 </md-card>
 
+<!-- 	<md-card>
+    <md-list>
+      <md-subheader class="md-no-sticky">Options</md-subheader>
+      <md-list-item ng-repeat="option in selectedPoll.answers">
+        <p>{{ option.label }}</p>
+      </md-list-item>
+    </md-list>
+	</md-card>
+ -->
+  <md-whiteframe md-ink-ripple="#2196F3" class="md-whiteframe-2dp" style="background: #fff; margin: 8px; padding: 16px;" layout ng-repeat="option in selectedPoll.answers" ng-click="submit(option.id)">
+    {{ option.label }}
+  </md-whiteframe>
 
-<md-card ng-repeat="answer in selectedPoll.answers">
-  <md-card-content>
-  	<p>{{answer.label}}</p>
-  </md-card-content>
 </md-card>

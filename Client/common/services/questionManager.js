@@ -54,6 +54,7 @@ app.factory('questionManager', [
       // userId will be filled in on server
       data: pluginData
     }
+    console.log(answer)
     responseSocket.emit('new answer', answer)
   }
 
