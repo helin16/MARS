@@ -8,15 +8,17 @@ app.factory('questionManager', [
     responseSocket
   ) {
 
-  // Server
+  // On the server
   // TODO: set up socket listener/emiter on server for new sessions 'new question'
   // TODO: set up socket listener for disappearing sessions
+  // TODO: API for getting users active quesions from db
+  // TODO: API for getting users subscriptions
+  // TODO: API for getting users answers
 
-  // Here
+  // This factory
   // TODO: add method to let controllers http req subscriptions for student 
-  // TODO: http req for currently active questions 
-  // TODO: add method to let plugin controllers to use local storage to store unsubmitted answers
-  // TOFU: add method to let plugin controllers check for their previous answers on server IF and ONLY IF there is no local storage answer
+  // TODO: http req for currently active questions from db
+  // TOFU: add method to let plugin controllers fetch their previous answers from server
 
   // Question manager object returned by this factory
   var questionManager = {};
@@ -36,13 +38,13 @@ app.factory('questionManager', [
   // Allows controllers to listen for updates to do with activeQuestions array
   questionManager.onQuestionListUpdate = function(scope, callback) {
     var handler = $rootScope.$on('activeQuestionsUpdate', callback);
-    scope.$on('$destroy', handler); // destroys the listener above
+    scope.$on('$destroy', handler); // deregisters the listener above
   } // adapted from http://www.codelord.net/2015/05/04/angularjs-notifying-about-changes-from-services-to-controllers/
 
   // Allows controllers to listen for when the selectedQuestion changes
   questionManager.onSelectedQuestionUpdate = function(scope, callback) {
     var handler = $rootScope.$on('selectedQuestionUpdate', callback);
-    scope.$on('$destroy', handler); // destroys the listener above
+    scope.$on('$destroy', handler); // deregisters the listener above
   }
 
   // Wraps plugin data and sends to server over socket io
