@@ -6,26 +6,31 @@ app.controller('AnswerController', function(
   questionManager
   ) {
 
-  // // TODO Add service to notify this controller of new questions / questions ending
-  questionManager.subscribeQuestionList($scope, function() { 
-    // Set the app state to answer.plugin_<pluginType>
-    $state.go('answer.plugin_' + questionManager.selectedQuestion.pluginType)
+  // Should the next question button be displayed
+  $scope.multipleQuestions = false;
+
+  // Check if intro screen should be displayed (ie if user has subscribed to a collection)
+  if (questionManager.userIsSubscribed()) {
+    $state.go('answer.subscribed');
+  } else {
+    $state.go('answer.notSubscribed');
+  }
+
+  // Notify this controller of new questions / questions ending
+  questionManager.onQuestionListUpdate($scope, function() { 
+    // Set the app state to answer.plugin_<pluginType> (ie answer.plugin_wordCloud)
+    $scope.multipleQuestions = questionManager.multipleQuestions()
+    $state.go('answer.plugin_' + questionManager.getSelectedQuestion().pluginType)
   })
 
   $scope.logout = function(){
     $state.go('logout');
   }
 
-  if (questionManager.subscribed) {
-    $state.go('answer.subscribed');
-  } else {
-    $state.go('answer.notsubscribed');
-  }
-
-  $scope.nextPoll = function (event) {
-    // iterate through questions on questionManager which will return state/view
-    // var questionType
-    $state.go(questionType)
+  // Iterate through questions in questionManager's activeQuestions array
+  $scope.nextPoll = function () {
+    questionManager.nextQuestion();
+    $state.go('answer.plugin_' + questionManager.getSelectedQuestion().pluginType);
   }
 
   $scope.joinMessage = '';
@@ -45,4 +50,5 @@ app.controller('AnswerController', function(
       }
     );
   };
+
 })
