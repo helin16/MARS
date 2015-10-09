@@ -1,51 +1,7 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<meta name="apple-mobile-web-app-capable" content="yes" />
-  <meta name="mobile-web-app-capable" content="yes" />
-	<title></title>
-	<style type="text/css">
+<md-card>
+	<md-card-content>
+		<h2 class="md-title">{{ selectedPoll.question }}</h2>
 
-		.div-style {
-			border: 1px solid black;
-			padding: 10px;
-			background-color: black;
-		}
-
-		@media screen and (orientation: portrait) {
-			img {
-				width: 100%;
-				display: none;
-			}
-			canvas {
-				width: 100%;
-			}
-		}
-
-		@media screen and (orientation: landscape) {
-			#main-section {
-				display: inline-block;
-			}
-
-			#button-sidebar {
-				display: inline-block;
-				vertical-align: top;
-			}
-
-			img {
-				height: 100%;
-				display: none;
-			}
-			canvas {
-				height: 100%;
-			}
-		}
-
-	</style>
-</head>
-<body ng-app="myApp">
-
-	<div class="div-style" ng-controller="myCtrl">
 		<div id="main-section">
 			<img id="back-image" ng-src="{{ example.image }}">
 			<canvas id="drawing-layer" width="800" height="480"></canvas>
@@ -57,10 +13,5 @@
 			<button>Button</button>
 
 		</div>
-	</div>
-
-	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.0/angular.min.js"></script>
-	<script type="text/javascript" src="../app.js"></script>
-	<script type="text/javascript" src="student.js"></script>
-</body>
-</html>
+	</md-card-content>
+</md-card>
