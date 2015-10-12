@@ -18,9 +18,9 @@ app.controller('AnswerController', function(
 
   // Notify this controller of new questions / questions ending
   questionManager.onQuestionListUpdate($scope, function() { 
-    // Set the app state to answer.plugin_<pluginType> (ie answer.plugin_wordCloud)
+    // Set the app state to answer.answerPlugin_<pluginType> (ie answer.plugin_wordCloud)
     $scope.multipleQuestions = questionManager.multipleQuestions()
-    $state.go('answer.plugin_' + questionManager.getSelectedQuestion().pluginType)
+    $state.go('answer.answerPlugin_' + questionManager.getSelectedQuestion().pluginType)
   })
 
   $scope.logout = function(){
@@ -30,7 +30,7 @@ app.controller('AnswerController', function(
   // Iterate through questions in questionManager's activeQuestions array
   $scope.nextPoll = function () {
     questionManager.nextQuestion();
-    $state.go('answer.plugin_' + questionManager.getSelectedQuestion().pluginType);
+    $state.go('answer.answerPlugin_' + questionManager.getSelectedQuestion().pluginType);
   }
 
   $scope.joinMessage = '';

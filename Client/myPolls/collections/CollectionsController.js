@@ -1,4 +1,4 @@
-app.controller('CollectionsController', function($scope, $mdDialog) {
+app.controller('CollectionsController', ['$scope', '$state', '$mdDialog', function($scope, $state,$mdDialog) {
 
 	$scope.collections = [
 		{
@@ -24,6 +24,10 @@ app.controller('CollectionsController', function($scope, $mdDialog) {
 		}
 	];
 
+	$scope.editCollection = function () {
+		$state.go('myPolls.editCollection')
+	}
+
 	$scope.alert = '';
 	$scope.addCollaborators = function(ev) {
 		$mdDialog.show({
@@ -41,4 +45,4 @@ app.controller('CollectionsController', function($scope, $mdDialog) {
 			}
 		);
 	};
-})
+}])

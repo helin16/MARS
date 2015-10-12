@@ -1,13 +1,13 @@
-var express 		= require('express');
-var app 			= express();
-var server 			= require('http').Server(app);
-var io 				= require('socket.io')(server);
-var path 			= require('path');
-var favicon 		= require('static-favicon');
-var logger 			= require('morgan');
-var cookieParser 	= require('cookie-parser');
-var bodyParser 		= require('body-parser');
-var passport 		= require('passport');
+var express         = require('express');
+var app             = express();
+var server          = require('http').Server(app);
+var io              = require('socket.io')(server);
+var path            = require('path');
+var favicon         = require('static-favicon');
+var logger          = require('morgan');
+var cookieParser    = require('cookie-parser');
+var bodyParser      = require('body-parser');
+var passport        = require('passport');
 var mongoose        = require('mongoose');
 var expressSession  = require('express-session');
 
@@ -47,16 +47,15 @@ app.use(function(req, res, next) {
 
 // socket io
 var response = io.of('/response');
-
 response.on('connection', function(socket){
   console.log('new resoponse user connected');
-  socket.on('answer', function(data) {
+  socket.on('new answer', function(data) {
+    // get user data and store user id and name with answer in question
     console.log(data)
   })
 });
 
 var editing = io.of('/editing');
-
 editing.on('connection', function(socket){
   console.log('new editing user connected');
   socket.on('edit', function() {

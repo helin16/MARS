@@ -1,7 +1,12 @@
-app.controller('UpcomingController', function($scope) {
+app.controller('UpcomingController', function($scope, $state) {
 
 	$scope.markGroupAsFinished = function () {
 		$scope.upcoming[0].done = true;
+	}
+
+	// temp for testing
+	$scope.run = function () {
+		$state.go('myPolls.resultsPlugin_multipleChoice');
 	}
 
 	// TODO Create a service to pull this data

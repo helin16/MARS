@@ -1,8 +1,13 @@
-app.controller('EditCollectionController', function($scope, $routeParams, $mdSidenav, $mdDialog) {
-	
+app.controller('EditCollectionController', ['$scope', '$state', '$mdSidenav', '$mdDialog', function($scope, $state, $mdSidenav, $mdDialog) {
+
 	$scope.openQuestionList = function() {
 		$mdSidenav('groups').toggle();
 	};
+
+	// temp for testing
+	$scope.run = function () {
+		$state.go('myPolls.resultsPlugin_multipleChoice');
+	}
 
 	$scope.currentQuestion = {
 		id: "1928he98eh219e21e9",
@@ -122,4 +127,4 @@ app.controller('EditCollectionController', function($scope, $routeParams, $mdSid
 			}
 		);
 	};
-})
+}])

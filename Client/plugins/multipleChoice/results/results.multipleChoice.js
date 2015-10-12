@@ -1,4 +1,4 @@
-app.controller('PollResultsController', function($scope, $routeParams, $location, $mdDialog, $interval) {
+app.controller('MultipleChoiceResultsPluginController', function($scope, $location, $mdDialog, $interval) {
 	// TODO: Request melts code and results
 
 	$scope.pollCode = "QF177" 

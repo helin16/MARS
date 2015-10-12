@@ -1,4 +1,4 @@
-var app = angular.module('melts', ['ngMaterial', 'ui.router', 'btford.socket-io']);
+var app = angular.module('mars', ['ngMaterial', 'ui.router', 'btford.socket-io']);
 
 app.controller('MainController', ['$scope', '$mdSidenav', function($scope, $mdSidenav) {
 
@@ -83,6 +83,11 @@ app.controller('MainController', ['$scope', '$mdSidenav', function($scope, $mdSi
     templateUrl: 'myPolls/collections/collections.html',
     controller: 'CollectionsController'
   })
+  .state('myPolls.editCollection', {
+    url: '/edit',
+    templateUrl: 'myPolls/collections/editCollection/editCollection.html',
+    controller: 'EditCollectionController'
+  })
   .state('myPolls.trash', {
     url: '/trash',
     templateUrl: 'myPolls/trash/trash.html',
@@ -108,15 +113,16 @@ app.controller('MainController', ['$scope', '$mdSidenav', function($scope, $mdSi
   // Register 'answers', 'results' and 'settings' controllers and views for each plugin
   plugins.forEach(function(plugin) {
     $stateProvider
-    .state('answer.plugin_' + plugin, {
+    .state('answer.answerPlugin_' + plugin, {
       templateUrl: 'plugins/' + plugin + '/answer/answer.' + plugin + '.html',
       controller: controllerName(plugin + 'Answer')
     })
-    .state('results.plugin_' + plugin, {
+    .state('myPolls.resultsPlugin_' + plugin, {
+      url: '/results',
       templateUrl: 'plugins/' + plugin + '/results/results.' + plugin + '.html',
       controller: controllerName(plugin + 'Results')
     })
-    .state('settings.plugin_' + plugin, {
+    .state('myPolls.settingsPlugin_' + plugin, {
       templateUrl: 'plugins/' + plugin + '/settings/settings.' + plugin + '.html',
       controller: controllerName(plugin + 'Settings')
     })
