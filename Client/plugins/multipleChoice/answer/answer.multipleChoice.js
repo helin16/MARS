@@ -3,8 +3,11 @@ app.controller('MultipleChoiceAnswerPluginController', function (
   questionManager
   ){
 
+  $scope.selectedPoll = questionManager.getSelectedQuestion();
+
   questionManager.onSelectedQuestionUpdate($scope, function () {
     $scope.selectedPoll = questionManager.getSelectedQuestion()
+    console.log($scope.selectedPoll)
   })
 
   // socketio example

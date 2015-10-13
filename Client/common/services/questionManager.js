@@ -30,7 +30,7 @@ app.factory('questionManager', [
   var qIndex = 0;
 
   // Is the user subscribed to one or more collections?
-  var subscribed = false; // a http call will need to be made in order to retrieve this
+  var subscribed = true; // a http call will need to be made in order to retrieve this
   
   // The question that the user is currently attempting
   var selectedQuestion = null;
@@ -95,11 +95,11 @@ app.factory('questionManager', [
 
   // Upon new questions being opened by a lecturer, add question to activeQuestions array
   // and emit updates to listening controllers
-  // responseSocket.on('new question', function(data){
-  function responseSocketOnNewQuestion (data) {// this is temp for testing - use line above in production
+  responseSocket.on('new session', function(data){
+  // function responseSocketOnNewQuestion (data) {// this is temp for testing - use line above in production
     // push question data onto activeQuestions array
     activeQuestions.push(data)
-
+    console.log('new session received: ', data)
     // if there is only 1 question in activeQuestions array, automatically make it the selectedQuestion
     if (activeQuestions.length === 1) {
       selectedQuestion = activeQuestions[0];
@@ -108,7 +108,7 @@ app.factory('questionManager', [
 
     emitQuestionListUpdate();
   }
-  // );
+  );
 
   // end of factory
   //return questionManager;
@@ -120,72 +120,72 @@ app.factory('questionManager', [
 
 
 
-  // Simulate retrieving active polls
-  $timeout(activeQuestionsRecieved, 1000);
+  // // Simulate retrieving active polls
+  // $timeout(activeQuestionsRecieved, 1000);
 
-  // Simulate recieving a new poll
-  $timeout(newPoll, 3000, true, 0);
-  $timeout(newPoll, 2000, true, 1);
-  $timeout(newPoll, 4000, true, 2);
+  // // Simulate recieving a new poll
+  // $timeout(newPoll, 3000, true, 0);
+  // $timeout(newPoll, 2000, true, 1);
+  // $timeout(newPoll, 4000, true, 2);
 
-  function activeQuestionsRecieved() {
-    var data = {
-      id: "1928he98eh219e21e9",
-      pluginType: "wordCloud",
-      collection: "ENG1001",
-      question: "What is this subject? An ideal inverting Op Amp?",
-      answers: [
-      { id: 0, label: 'The gain, G, would be 0.3333' },
-      { id: 1, label: 'The gain, G, would be 3' },
-      { id: 2, label: 'The gain, G, would be 3*10^4' },
-      { id: 3, label: 'The gain, G, would be -3' }
-      ]
-    } 
-    responseSocketOnNewQuestion(data);
-  }
+  // function activeQuestionsRecieved() {
+  //   var data = {
+  //     id: "1928he98eh219e21e9",
+  //     pluginType: "wordCloud",
+  //     collection: "ENG1001",
+  //     question: "What is this subject? An ideal inverting Op Amp?",
+  //     answers: [
+  //     { id: 0, label: 'The gain, G, would be 0.3333' },
+  //     { id: 1, label: 'The gain, G, would be 3' },
+  //     { id: 2, label: 'The gain, G, would be 3*10^4' },
+  //     { id: 3, label: 'The gain, G, would be -3' }
+  //     ]
+  //   } 
+  //   responseSocketOnNewQuestion(data);
+  // }
 
-  function newPoll (i) {
-    var polls = [
-    {
-      id: "1928he98eh219e2112",
-      pluginType: "multipleChoice",
-      collection: "ENG1004",
-      question: "A new unit full of potential?",
-      answers: [
-      { id: 3, label: 'The gain, G, would be -3' },
-      { id: 2, label: 'The gain, G, would be 3*10^4' },
-      { id: 1, label: 'The gain, G, would be 3' },
-      { id: 0, label: 'The gain, G, would be 0.3333' },
-      ]
-    },
-    {
-      id: "1928he98eh219e2110",
-      pluginType: "multipleChoice",
-      collection: "ENG1002",
-      question: "Assuming an ideal inverting Op Amp, what would the gain be, if R1 was 300k ohms and R2 was 100k?",
-      answers: [
-      { id: 2, label: 'The gain, G, would be 3*10^4' },
-      { id: 0, label: 'The gain, G, would be 0.3333' },
-      { id: 3, label: 'The gain, G, would be -3' },
-      { id: 1, label: 'The gain, G, would be 3' },
-      ]
-    },
-    {
-      id: "1928he98eh219e2111",
-      pluginType: "multipleChoice",
-      collection: "ENG1003",
-      question: "How many different data types are there in JavaScript?",
-      answers: [
-      { id: 0, label: 'The gain, G, would be 0.3333' },
-      { id: 3, label: 'The gain, G, would be -3' },
-      { id: 1, label: 'The gain, G, would be 3' },
-      { id: 2, label: 'The gain, G, would be 3*10^4' },
-      ]
-    }
-    ]
-    responseSocketOnNewQuestion(polls[i]);
-    console.log(activeQuestions)
-  }
+  // function newPoll (i) {
+  //   var polls = [
+  //   {
+  //     id: "1928he98eh219e2112",
+  //     pluginType: "multipleChoice",
+  //     collection: "ENG1004",
+  //     question: "A new unit full of potential?",
+  //     answers: [
+  //     { id: 3, label: 'The gain, G, would be -3' },
+  //     { id: 2, label: 'The gain, G, would be 3*10^4' },
+  //     { id: 1, label: 'The gain, G, would be 3' },
+  //     { id: 0, label: 'The gain, G, would be 0.3333' },
+  //     ]
+  //   },
+  //   {
+  //     id: "1928he98eh219e2110",
+  //     pluginType: "multipleChoice",
+  //     collection: "ENG1002",
+  //     question: "Assuming an ideal inverting Op Amp, what would the gain be, if R1 was 300k ohms and R2 was 100k?",
+  //     answers: [
+  //     { id: 2, label: 'The gain, G, would be 3*10^4' },
+  //     { id: 0, label: 'The gain, G, would be 0.3333' },
+  //     { id: 3, label: 'The gain, G, would be -3' },
+  //     { id: 1, label: 'The gain, G, would be 3' },
+  //     ]
+  //   },
+  //   {
+  //     id: "1928he98eh219e2111",
+  //     pluginType: "multipleChoice",
+  //     collection: "ENG1003",
+  //     question: "How many different data types are there in JavaScript?",
+  //     answers: [
+  //     { id: 0, label: 'The gain, G, would be 0.3333' },
+  //     { id: 3, label: 'The gain, G, would be -3' },
+  //     { id: 1, label: 'The gain, G, would be 3' },
+  //     { id: 2, label: 'The gain, G, would be 3*10^4' },
+  //     ]
+  //   }
+  //   ]
+  //   responseSocketOnNewQuestion(polls[i]);
+  //   console.log(activeQuestions)
+  // }
 
   return questionManager;
 }])

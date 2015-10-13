@@ -1,4 +1,4 @@
-app.controller('UpcomingController', function($scope, $state) {
+app.controller('UpcomingController', function($scope, $state, resultsService) {
 
 	$scope.markGroupAsFinished = function () {
 		$scope.upcoming[0].done = true;
@@ -6,6 +6,7 @@ app.controller('UpcomingController', function($scope, $state) {
 
 	// temp for testing
 	$scope.run = function () {
+		resultsService.newSession();
 		$state.go('myPolls.resultsPlugin_multipleChoice');
 	}
 

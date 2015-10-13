@@ -49,9 +49,31 @@ app.use(function(req, res, next) {
 var response = io.of('/response');
 response.on('connection', function(socket){
   console.log('new resoponse user connected');
-  socket.on('new answer', function(data) {
+
+  socket.on('new session', function(questionId) {
+    console.log('new session started')
+    // set question's sessionActive field to 'true' in database
+
+    // retrieve question info for students
+    var questionDataFromDatabase = {
+      id: "1928he98eh219e21e9",
+      pluginType: "multipleChoice",
+      collection: "ENG1001",
+      question: "What is this subject? An ideal inverting Op Amp?",
+      answers: [
+      { id: 0, label: 'The gain, G, would be 0.3333' },
+      { id: 1, label: 'The gain, G, would be 3' },
+      { id: 2, label: 'The gain, G, would be 3*10^4' },
+      { id: 3, label: 'The gain, G, would be -3' }
+      ]
+    }
+
+    response.emit('new session', questionDataFromDatabase);
+  })
+
+  socket.on('new answer', function(answer) {
     // get user data and store user id and name with answer in question
-    console.log(data)
+    response.emit('new answer', answer.data);
   })
 });
 
