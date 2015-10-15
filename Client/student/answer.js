@@ -17,10 +17,18 @@ app.controller('AnswerController', function(
   }
 
   // Notify this controller of new questions / questions ending
-  questionManager.onQuestionListUpdate($scope, function() { 
-    // Set the app state to answer.answerPlugin_<pluginType> (ie answer.plugin_wordCloud)
+  questionManager.onQuestionListUpdate($scope, function () { 
+    // Hide or show the multiple questions button
     $scope.multipleQuestions = questionManager.multipleQuestions()
-    $state.go('answer.answerPlugin_' + questionManager.getSelectedQuestion().pluginType)
+  })
+
+  questionManager.onSelectedQuestionUpdate($scope, function () {
+    if (questionManager.getSelectedQuestion() !== null) {
+      // Set the app state to answer.answerPlugin_<pluginType> (ie answer.plugin_wordCloud)
+      $state.go('answer.answerPlugin_' + questionManager.getSelectedQuestion().pluginType);
+    } else {
+      $state.go('answer.subscribed');
+    }
   })
 
   $scope.logout = function(){

@@ -46,35 +46,75 @@ app.use(function(req, res, next) {
 });
 
 // socket io
+// Note: this will need to be pulled out into its own file
+// Note: We will need to look at bringing passport/express user info into socket
+// Potential solutions:
+//  - http://stackoverflow.com/questions/13095418/how-to-use-passport-with-express-and-socket-io
+//  - https://www.npmjs.com/package/passport.socketio
+
 var response = io.of('/response');
 response.on('connection', function(socket){
   console.log('new resoponse user connected');
 
-  socket.on('new session', function(questionId) {
-    console.log('new session started')
-    // set question's sessionActive field to 'true' in database
+  // When a lecturer starts a new session (opens a question room)
+  socket.on('start session', function(questionId) {
+    console.log('new session started '+questionId)
 
-    // retrieve question info for students
+    // Create a room with just with the lecturer(s) in it
+    // Note: this room will recieve all answers posted by students
+    socket.join(questionId);
+
+    // TODO set question's sessionActive field to 'true' in database
+    // TODO retrieve question info from db to send to students 
+    // Note: the actions above can be done with a findAndModify
+    // see: http://docs.mongodb.org/manual/reference/method/db.collection.findAndModify/
     var questionDataFromDatabase = {
-      id: "1928he98eh219e21e9",
+      id: questionId, // this can be from db or lecturer's socket message
       pluginType: "multipleChoice",
       collection: "ENG1001",
-      question: "What is this subject? An ideal inverting Op Amp?",
+      question: "What shoud we make ENG1001?",
       answers: [
-      { id: 0, label: 'The gain, G, would be 0.3333' },
-      { id: 1, label: 'The gain, G, would be 3' },
-      { id: 2, label: 'The gain, G, would be 3*10^4' },
-      { id: 3, label: 'The gain, G, would be -3' }
+        { id: 0, label: 'Bigger, Better, Badder.' },
+        { id: 1, label: 'Softer, Cuter, Cuddlier.' },
+        { id: 2, label: 'Smoother, Silkier, Slipperier.' },
+        { id: 3, label: 'Rougher, Tougher, Donut.' }
       ]
     }
-
+    // Emit new session message with question data to students
     response.emit('new session', questionDataFromDatabase);
-  })
+  });
 
+  // When a lecturer starts a new session (opens a question room)
+  socket.on('end session', function(questionId) {
+    console.log('session ended '+questionId)
+    // TODO Set sessionActive field to 'false' in database
+
+    // Lecturer leaves the room where answers are sent
+    socket.leave(questionId);
+    // Emit session closed message to students
+    response.emit('session closed', questionId);
+  });
+
+
+  // When a student posts a new answer
   socket.on('new answer', function(answer) {
-    // get user data and store user id and name with answer in question
-    response.emit('new answer', answer.data);
-  })
+    // TODO If question's sessionActive field is true in db, store user's answer 
+    // in db
+
+    // Note:
+    // We could also check that the user has subscribed to this collection 
+    // before saving their answer but there's no point since anyone is able to 
+    // subscribe to any collection.
+
+    var questionId = answer.questionId;
+
+    // Get user name and id from session and send it with answer data to 
+    var answerWrapper = {};
+    answerWrapper.userId = 'user123';
+    answerWrapper.username = 'Student McStudent';
+    answerWrapper.data = answer.data;
+    response.to(questionId).emit('new answer', answerWrapper);
+  });
 });
 
 var editing = io.of('/editing');

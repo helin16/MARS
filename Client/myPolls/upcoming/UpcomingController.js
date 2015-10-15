@@ -5,8 +5,8 @@ app.controller('UpcomingController', function($scope, $state, resultsService) {
 	}
 
 	// temp for testing
-	$scope.run = function () {
-		resultsService.newSession();
+	$scope.run = function (questionId) {
+		resultsService.newSession(questionId);
 		$state.go('myPolls.resultsPlugin_multipleChoice');
 	}
 
@@ -19,16 +19,20 @@ app.controller('UpcomingController', function($scope, $state, resultsService) {
 			group: "Lecture 4",
 			polls: [
 				{
-					question: "What are the 5 datatypes in JavaScript?"
+					question: "What are the 5 datatypes in JavaScript?",
+					id: "123"
 				},
 				{
-					question: "Is JavaScript a high or low level language?"
+					question: "Is JavaScript a high or low level language?",
+					id: "124"
 				},
 				{
-					question: "When does a for-loop end?"
+					question: "When does a for-loop end?",
+					id: "125"
 				},
 				{
-					question: "What's the largest number I can store in a Number in JavaScript?"
+					question: "What's the largest number I can store in a Number in JavaScript?",
+					id: "126"
 				}
 			],
 			done: false
@@ -39,13 +43,16 @@ app.controller('UpcomingController', function($scope, $state, resultsService) {
 			group: "Lecture 3",
 			polls: [
 				{
-					question: "Is there actually a unit called ECE2064?"
+					question: "Is there actually a unit called ECE2064?",
+					id: "127"
 				},
 				{
-					question: "I ask because it sounds familiar but I don't actually know?"
+					question: "I ask because it sounds familiar but I don't actually know?",
+					id: "128"
 				},
 				{
-					question: "Was the question before this even a question?"
+					question: "Was the question before this even a question?",
+					id: "129"
 				}
 			],
 			done: false
@@ -56,16 +63,20 @@ app.controller('UpcomingController', function($scope, $state, resultsService) {
 			group: "Lecture 3",
 			polls: [
 				{
-					question: "What are the 5 datatypes in JavaScript?"
+					question: "What are the 5 datatypes in JavaScript?",
+					id: "130"
 				},
 				{
-					question: "Is JavaScript a high or low level language?"
+					question: "Is JavaScript a high or low level language?",
+					id: "131"
 				},
 				{
-					question: "When does a for-loop end?"
+					question: "When does a for-loop end?",
+					id: "132"
 				},
 				{
-					question: "What's the largest number I can store in a Number in JavaScript?"
+					question: "What's the largest number I can store in a Number in JavaScript?",
+					id: "133"
 				}
 			],
 			done: false
