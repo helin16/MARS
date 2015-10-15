@@ -82,6 +82,13 @@ response.on('connection', function(socket){
     }
     // Emit new session message with question data to students
     response.emit('new session', questionDataFromDatabase);
+
+    // If a lecturer closes the session tab (disconnects)
+    socket.on('disconnect', function(){
+      console.log('session disconnected');
+      // Emit session closed message to students
+      response.emit('session closed', questionId);
+    });
   });
 
   // When a lecturer starts a new session (opens a question room)
