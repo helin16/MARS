@@ -46,19 +46,34 @@ app.use(function(req, res, next) {
 });
 
 // socket io
+
 // Note: this will need to be pulled out into its own file
+
 // Note: We will need to look at bringing passport/express user info into socket
 // Potential solutions:
 //  - http://stackoverflow.com/questions/13095418/how-to-use-passport-with-express-and-socket-io
 //  - https://www.npmjs.com/package/passport.socketio
 
+// Note: currently the lecturer creates a room with only themselves in the room.
+// The student's then post questions to the room which means only the lecturer
+// can see them. Problem with this: There are no rooms for all students attempting 
+// question x and so we have to send a message to EVERYONE to let them
+// know a question session has finished. It would be better to make rooms for
+// students and lecturers, keep track of lecturers socket_id's and then student
+// responses would be directed to the lecturer's socket_id's (ie no private 
+// rooms).
+
 var response = io.of('/response');
 response.on('connection', function(socket){
   console.log('new resoponse user connected');
+  // Keep track of lecturer's selected question id in case lecturer disconnects
+  var sessionQuestionId = null;
 
   // When a lecturer starts a new session (opens a question room)
   socket.on('start session', function(questionId) {
-    console.log('new session started '+questionId)
+    console.log('new session started ' + questionId)
+
+    sessionQuestionId = questionId;
 
     // Create a room with just with the lecturer(s) in it
     // Note: this room will recieve all answers posted by students
@@ -82,24 +97,19 @@ response.on('connection', function(socket){
     }
     // Emit new session message with question data to students
     response.emit('new session', questionDataFromDatabase);
-
-    // If a lecturer closes the session tab (disconnects)
-    socket.on('disconnect', function(){
-      console.log('session disconnected');
-      // Emit session closed message to students
-      response.emit('session closed', questionId);
-    });
   });
 
-  // When a lecturer starts a new session (opens a question room)
-  socket.on('end session', function(questionId) {
-    console.log('session ended '+questionId)
+  // When a lecturer ends a session (closes a question room)
+  socket.on('end session', function() {
+    console.log('session ended ' + sessionQuestionId)
     // TODO Set sessionActive field to 'false' in database
 
     // Lecturer leaves the room where answers are sent
-    socket.leave(questionId);
+    socket.leave(sessionQuestionId);
+
     // Emit session closed message to students
-    response.emit('session closed', questionId);
+    response.emit('session closed', sessionQuestionId);
+    sessionQuestionId = null;
   });
 
 
@@ -113,14 +123,23 @@ response.on('connection', function(socket){
     // before saving their answer but there's no point since anyone is able to 
     // subscribe to any collection.
 
-    var questionId = answer.questionId;
-
     // Get user name and id from session and send it with answer data to 
     var answerWrapper = {};
     answerWrapper.userId = 'user123';
     answerWrapper.username = 'Student McStudent';
     answerWrapper.data = answer.data;
-    response.to(questionId).emit('new answer', answerWrapper);
+    response.to(answer.questionId).emit('new answer', answerWrapper);
+  });
+
+
+  // Whenever a student or lecturer disconnects
+  socket.on('disconnect', function(){
+    console.log('disconnection');
+    if (sessionQuestionId !== null) {
+      // Emit session closed message to students
+      response.emit('session closed', sessionQuestionId);
+      sessionQuestionId = null;
+    }
   });
 });
 

@@ -121,18 +121,19 @@ app.factory('questionManager', [
   // activeQuestions array and emit updates to listening controllers
   responseSocket.on('session closed', function(questionId){
     console.log('session closed: ', questionId)
-    // find question in activeQuestions array and splice question out of array
+    // search activeQuestions array for ended question
     activeQuestions.some(function (question,i,arr) {
       if (question.id === questionId) {
+        // remove question from activeQuestions array
         arr.splice(i,1);
+        // let 'plugin answer' and 'answer' controllers know 
+        emitQuestionListUpdate();
         return true;
       }
     })
-    // let plugin answer and answer controllers know 
-    emitQuestionListUpdate();
 
     // If question being removed is selectedQuestion, update selectedQuestion
-    if (selectedQuestion.id === questionId) {
+    if (selectedQuestion && selectedQuestion.id === questionId) {
       selectedQuestion = null;
       emitSelectedQuestionUpdate();
     }

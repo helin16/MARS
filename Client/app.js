@@ -1,4 +1,4 @@
-var app = angular.module('mars', ['ngMaterial', 'ui.router', 'btford.socket-io']);
+var app = angular.module('mars', ['ngMaterial', 'ui.router', 'btford.socket-io', 'd3']);
 
 app.controller('MainController', ['$scope', '$mdSidenav', function($scope, $mdSidenav) {
 

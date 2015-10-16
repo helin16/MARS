@@ -20,8 +20,8 @@ app.factory('resultsService', [
   // Question manager object returned by this factory
   var resultsService = {};
 
-  // List of all answers submitted in a session
-  var answers = [];
+  // All answers submitted in a session, keys are userId's values are answers
+  var answers = {};
 
   // The id of the question that is being viewed
   var qId = null;
@@ -31,7 +31,7 @@ app.factory('resultsService', [
     console.log('new session started: ' + questionId)
     qId = questionId;
     responseSocket.emit('start session', questionId)
-    answers = []; // reset answers array
+    answers = {}; // reset answers
   };
 
   // Allows result plugin controllers to start listening for new answers
@@ -42,7 +42,7 @@ app.factory('resultsService', [
 
   // Allows result plugin controllers to get a copy of answer data
   resultsService.getAnswers = function () {
-    return answers.slice();
+    return answers;
   };
 
   // End a question session (ie close question to prevent more answers)
@@ -53,7 +53,7 @@ app.factory('resultsService', [
 
   // Upon new answers arriving, emit updates to listening controllers
   responseSocket.on('new answer', function(data){
-    answers.push(data);
+    answers[data.userId] = data;
     $rootScope.$emit('newAnswerUpdate');
   });
 
