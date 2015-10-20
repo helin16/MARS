@@ -39,7 +39,7 @@ app.controller('MainController', ['$scope', '$mdSidenav', function($scope, $mdSi
 
 
 
-  // NOTE: Upon recieving new questions, 
+  // NOTE: Upon recieving new questions,
   // check if activeQuesitons length === 1 and if so, set it as selectedQuestion
   // otherwise just add it to activeQuestions
   var activeQuestions = [];
@@ -101,18 +101,26 @@ app.controller('MainController', ['$scope', '$mdSidenav', function($scope, $mdSi
   $timeout(newPoll, 10000, true, 2);
 
   function activeQuestionsRecieved() {
-    var data = {
+    // var data = {
+    //   id: "1928he98eh219e21e9",
+    //   pluginType: "multipleChoice",
+    //   collection: "ENG1001",
+    //   question: "What is this subject? An ideal inverting Op Amp?",
+    //   answers: [
+    //   { id: 0, label: 'The gain, G, would be 0.3333' },
+    //   { id: 1, label: 'The gain, G, would be 3' },
+    //   { id: 2, label: 'The gain, G, would be 3*10^4' },
+    //   { id: 3, label: 'The gain, G, would be -3' }
+    //   ]
+    // }
+
+    var data  = {
       id: "1928he98eh219e21e9",
-      pluginType: "multipleChoice",
+      pluginType: "draw",
       collection: "ENG1001",
-      question: "What is this subject? An ideal inverting Op Amp?",
-      answers: [
-      { id: 0, label: 'The gain, G, would be 0.3333' },
-      { id: 1, label: 'The gain, G, would be 3' },
-      { id: 2, label: 'The gain, G, would be 3*10^4' },
-      { id: 3, label: 'The gain, G, would be -3' }
-      ]
-    } 
+      question: "Circle the circle."
+
+    }
     responseSocketOnNewQuestion(data);
   }
 
@@ -159,7 +167,7 @@ app.controller('MainController', ['$scope', '$mdSidenav', function($scope, $mdSi
   }
 
   // function nextQuestion () {
-  //   return 'answer.plugin_' + $scope.selectedQuestion.pluginType  
+  //   return 'answer.plugin_' + $scope.selectedQuestion.pluginType
   // }
 
   return questionManager;
