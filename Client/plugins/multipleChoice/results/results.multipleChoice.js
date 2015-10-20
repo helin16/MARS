@@ -1,72 +1,56 @@
-app.controller('PollResultsController', function($scope, $routeParams, $location, $mdDialog, $interval) {
-	// TODO: Request melts code and results
+app.controller('MultipleChoiceResultsPluginController', [
+	'$scope',
+	'$mdDialog',
+	'$interval',
+	'resultsService',
+	'd3Service',
+	function(
+	$scope, 
+	$mdDialog,
+	$interval,
+	resultsService,
+	d3Service
+	) {
 
-	$scope.pollCode = "QF177" 
-	$scope.highestVotes = 100;
+  // hard-code data
+  $scope.scores = {};
+  $scope.scores.scores = [
+    {option: "A", score: 0},
+    {option: "B", score: 0},
+    {option: 'C', score: 0},
+    {option: 'D', score: 0}
+  ];
 
-	$scope.results = [
-		{ option: "Answer 1", votes: 0 },
-		{ option: "Answer 2", votes: 0 },
-		{ option: "Answer 3", votes: 0 },
-		{ option: "Answer 4", votes: 0 },
-		{ option: "Answer 5", votes: 0 },
-	] 
+	// Holds the session answers for displaying
+	var results = {};
 
-	// Simulate new votes
-	$interval(newVotes, 100);
+	resultsService.onNewAnswerUpdate($scope, function(data) {
+		var results = resultsService.getAnswers()
 
-	function newVotes() {
-		$scope.results.forEach(function(x,i) {
-			x.votes += Math.floor(Math.random()*2 + ((i+2)%2))
-		});
+		for (var user in results) {
+		  $scope.scores.scores[ results[user].data ].score++
+		}
+	})
 
-		var highest = 0;
-
-		$scope.results.forEach(function(x) {
-			if (x.votes > highest) highest = x.votes;
-		});
-
-		if (highest > 100) $scope.highestVotes = highest;
-	}
+	// $scope.pollCode = "QF177" 
 
 
-	// Color Generator
-	// Adapted from: http://stackoverflow.com/questions/17242144/javascript-convert-hsb-hsv-color-to-rgb-accurately
-	function HSVtoRGB(h, s, v) {
-	    var r, g, b, i, f, p, q, t;
+	// // Simulate new votes
+	// $interval(newVotes, 100);
 
-	    h = h/360
-	    i = Math.floor(h * 6);
-	    f = h * 6 - i;
-	    p = v * (1 - s);
-	    q = v * (1 - f * s);
-	    t = v * (1 - (1 - f) * s);
-	    switch (i % 6) {
-	        case 0: r = v, g = t, b = p; break;
-	        case 1: r = q, g = v, b = p; break;
-	        case 2: r = p, g = v, b = t; break;
-	        case 3: r = p, g = q, b = v; break;
-	        case 4: r = t, g = p, b = v; break;
-	        case 5: r = v, g = p, b = q; break;
-	    }
-	    console.log(r,g,b)
+	// function newVotes() {
+	// 	$scope.results.forEach(function(x,i) {
+	// 		x.votes += Math.floor(Math.random()*2 + ((i+2)%2))
+	// 	});
 
-	    var red = Math.floor(r * 255).toString(16);
-	    var grn = Math.floor(g * 255).toString(16);
-	    var blu = Math.floor(b * 255).toString(16);
+	// 	var highest = 0;
 
-	    return {
-	        r: red.length === 2 ? red : "0"+red,
-	        g: grn.length === 2 ? grn : "0"+grn,
-	        b: blu.length === 2 ? blu : "0"+blu
-	    };
-	}
+	// 	$scope.results.forEach(function(x) {
+	// 		if (x.votes > highest) highest = x.votes;
+	// 	});
 
-	// Assign colors
-	for (var i = 0; i < $scope.results.length; i++)
-	{
-		col = HSVtoRGB(0+i*360/$scope.results.length,0.6,0.8);
-		$scope.results[i].color = '#2196F3'// + col.r + col.g + col.b;
-	}
+	// 	if (highest > 100) $scope.highestVotes = highest;
+	// }
 
-})
+
+}])

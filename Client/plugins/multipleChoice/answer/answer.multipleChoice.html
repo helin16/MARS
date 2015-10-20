@@ -1,10 +1,20 @@
 <md-card>
   <md-card-content>
     <h2 class="md-title">{{ selectedPoll.question }}</h2>
-    <md-radio-group>
-      <md-radio-button ng-repeat="answer in selectedPoll.answers" ng-value="answer.value">
-        {{ answer.label }}
-      </md-radio-button>
-    </md-radio-group>
   </md-card-content>
+</md-card>
+
+<!-- 	<md-card>
+    <md-list>
+      <md-subheader class="md-no-sticky">Options</md-subheader>
+      <md-list-item ng-repeat="option in selectedPoll.answers">
+        <p>{{ option.label }}</p>
+      </md-list-item>
+    </md-list>
+	</md-card>
+ -->
+  <md-whiteframe md-ink-ripple="#2196F3" class="md-whiteframe-2dp" style="background: #fff; margin: 8px; padding: 16px;" layout ng-repeat="option in selectedPoll.answers" ng-click="submit(option.id)">
+    {{ option.label }}
+  </md-whiteframe>
+
 </md-card>

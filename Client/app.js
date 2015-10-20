@@ -1,4 +1,4 @@
-var app = angular.module('melts', ['ngMaterial', 'ui.router', 'btford.socket-io']);
+var app = angular.module('mars', ['ngMaterial', 'ui.router', 'btford.socket-io', 'd3']);
 
 app.controller('MainController', ['$scope', '$mdSidenav', function($scope, $mdSidenav) {
 
@@ -16,6 +16,7 @@ app.controller('MainController', ['$scope', '$mdSidenav', function($scope, $mdSi
   return responseSocket;
 }])
 
+<<<<<<< HEAD
 .factory('questionManager', ['$rootScope', '$timeout', 'responseSocket', function ($rootScope, $timeout, responseSocket) {
 
   // get subscriptions for student
@@ -173,6 +174,8 @@ app.controller('MainController', ['$scope', '$mdSidenav', function($scope, $mdSi
   return questionManager;
 }])
 
+=======
+>>>>>>> ce4736bf25d967f1d1ca3a25c72326700bdde796
 .factory('editingSocket', ['socketFactory', function (socketFactory) {
   var editingIoSocket = io.connect('/editing');
 
@@ -216,7 +219,7 @@ app.controller('MainController', ['$scope', '$mdSidenav', function($scope, $mdSi
     templateUrl: 'student/answer.html',
     controller: 'AnswerController'
   })
-  .state('answer.notsubscribed', {
+  .state('answer.notSubscribed', {
     templateUrl: 'student/answer.notSubscribed.html'
   })
   .state('answer.subscribed', {
@@ -239,6 +242,11 @@ app.controller('MainController', ['$scope', '$mdSidenav', function($scope, $mdSi
     url: '/collections',
     templateUrl: 'myPolls/collections/collections.html',
     controller: 'CollectionsController'
+  })
+  .state('myPolls.editCollection', {
+    url: '/edit',
+    templateUrl: 'myPolls/collections/editCollection/editCollection.html',
+    controller: 'EditCollectionController'
   })
   .state('myPolls.trash', {
     url: '/trash',
@@ -265,17 +273,18 @@ app.controller('MainController', ['$scope', '$mdSidenav', function($scope, $mdSi
   // Register 'answers', 'results' and 'settings' controllers and views for each plugin
   plugins.forEach(function(plugin) {
     $stateProvider
-    .state('answer.plugin_' + plugin, {
+    .state('answer.answerPlugin_' + plugin, {
       templateUrl: 'plugins/' + plugin + '/answer/answer.' + plugin + '.html',
-      controller: controllerName(plugin)
+      controller: controllerName(plugin + 'Answer')
     })
-    .state('results.plugin_' + plugin, {
+    .state('myPolls.resultsPlugin_' + plugin, {
+      url: '/results',
       templateUrl: 'plugins/' + plugin + '/results/results.' + plugin + '.html',
-      controller: controllerName(plugin)
+      controller: controllerName(plugin + 'Results')
     })
-    .state('settings.plugin_' + plugin, {
+    .state('myPolls.settingsPlugin_' + plugin, {
       templateUrl: 'plugins/' + plugin + '/settings/settings.' + plugin + '.html',
-      controller: controllerName(plugin)
+      controller: controllerName(plugin + 'Settings')
     })
   })
 

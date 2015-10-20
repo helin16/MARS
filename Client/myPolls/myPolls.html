@@ -1,23 +1,19 @@
-<div layout="row" layout-fill>
-    <md-sidenav
-        ng-include="'myPolls/sideNav/sideNav.html'"
-        md-component-id="left"
-        class="md-sidenav-left md-whiteframe-z2"
-        md-is-locked-open="$mdMedia('gt-md')"
-        layout="column">
-    </md-sidenav>
+<md-sidenav
+    ng-include="'myPolls/sideNav/sideNav.html'"
+    md-component-id="left"
+    class="md-sidenav-left md-whiteframe-z2"
+    md-is-locked-open="$mdMedia('gt-md')"
+    layout="column">
+</md-sidenav>
 
-    <div layout="column" layout-fill>
-    <md-toolbar>
-      <div class="md-toolbar-tools">
-        <md-button class="md-icon-button md-secondary" aria-label="Settings" ng-click="openLeftMenu()" hide-gt-md>
-          <md-icon class="material-icons"> menu </md-icon>
-        </md-button>
-      </div>
-    </md-toolbar>
+<div flex layout="column">
+  <md-toolbar>
+    <div class="md-toolbar-tools">
+      <md-button class="md-icon-button md-secondary" aria-label="Settings" ng-click="openLeftMenu()" hide-gt-md>
+        <md-icon class="material-icons"> menu </md-icon>
+      </md-button>
+    </div>
+  </md-toolbar>
 
-    <md-content flex layout-padding class="md-hue-1">
-      <div ui-view class="max-width-960"></div>
-    </md-content>
-  </div>
+  <md-content ui-view flex layout="row"></md-content>
 </div>

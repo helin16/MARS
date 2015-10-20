@@ -1,0 +1,52 @@
+<md-card>
+	<md-card-content>
+
+	<style type="text/css">
+
+		.div-style {
+			border: 1px solid black;
+			padding: 10px;
+			background-color: black;
+		}
+
+		#exit-fullscreen {
+			display: none;
+			position: absolute;
+			bottom: 0;
+			right: 0;
+		}
+
+		#main-section {
+			display: inline-block;
+			position: static;
+		}
+
+		#button-sidebar {
+			display: inline-block;
+			vertical-align: top;
+		}
+
+		img {
+			display: none;
+		}
+
+
+
+	</style>
+
+		<h2 class="md-title">{{ selectedPoll.question }}</h2>
+
+		<div id="main-section">
+			<img id="back-image" ng-src="{{ example.image }}">
+			<canvas id="drawing-layer" width="800" height="480"></canvas>
+			<md-button class="md-raised" ng-click="exitFullScreen()" id="exit-fullscreen">Cancel Fullscreen</md-button>
+		</div>
+		<div id="button-sidebar">
+			<md-button class="md-raised" ng-click="submit()">Print to Console</md-button><br/>
+			<md-button class="md-raised" ng-click="undoFunction()">Undo Last Stroke</md-button><br/>
+			<md-button class="md-raised">Button</md-button><br/>
+			<button ng-click="fullScreen()">Fullscreen</button>
+
+		</div>
+	</md-card-content>
+</md-card>

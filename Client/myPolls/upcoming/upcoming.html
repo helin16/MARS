@@ -1,4 +1,4 @@
-<md-content flex layout-padding class="md-hue-1">
+<md-content flex class="md-hue-1">
 
   <div ng-show="false" layout-fill layout="column" layout-align="center center">
     <div>Hi there! Hit the plus to join.</div>
@@ -21,7 +21,7 @@
         </md-toolbar>
 
         <md-list>
-          <md-list-item ng-repeat="poll in group.polls" ng-click="navigateTo('/results/QF177')">
+          <md-list-item ng-repeat="poll in group.polls" ng-click="run(poll.id)">
             <p>{{ poll.question }}</p>
           </md-list-item>
         </md-list>

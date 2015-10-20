@@ -15,10 +15,11 @@
     <link rel="stylesheet" type="text/css" href="common/bg-colors.css">
     <link rel="stylesheet" type="text/css" href="common/no-content.css">
     <link rel="stylesheet" type="text/css" href="common/layout-fix.css">
+    <link rel="stylesheet" type="text/css" href="common/enable-ripples.css">
 
 </head>
-<body lang="en" ng-app="melts" ng-controller="MainController" layout="column">
-    <div ui-view layout="column" layout-fill style="background-color: rgb(245, 245, 245);"></div>
+<body lang="en" ng-app="mars" ng-controller="MainController" layout="row" ng-cloak>
+    <div ui-view layout="row" flex></div>
 
     <script src="https://cdn.socket.io/socket.io-1.2.0.js"></script>
     <script type="text/javascript" src="bower_components/angular/angular.js"></script>
@@ -31,16 +32,31 @@
 
     <script type="text/javascript" src="app.js"></script>
 
+    <script type="text/javascript" src="common/services/d3.js"></script>
+
+    <script type="text/javascript" src="common/services/questionManager.js"></script>
+    <script type="text/javascript" src="common/services/resultsService.js"></script>
+
     <script type="text/javascript" src="student/answer.js"></script>
     <script type="text/javascript" src="student/answer.join.js"></script>
+<<<<<<< HEAD
 
 
     <!-- This will need to be changed in future versions -->
     <script type="text/javascript" src="plugins/draw/answer/answer.draw.js"></script>
+=======
+    
+>>>>>>> ce4736bf25d967f1d1ca3a25c72326700bdde796
     <script type="text/javascript" src="plugins/multipleChoice/answer/answer.multipleChoice.js"></script>
+    <script type="text/javascript" src="plugins/multipleChoice/results/results.multipleChoice.js"></script>
+    <script type="text/javascript" src="plugins/multipleChoice/results/barChart.js"></script>
+    <!--<script type="text/javascript" src="plugins/multipleChoice/edit/edit.multipleChoice.js"></script>-->
+
+    <script type="text/javascript" src="plugins/wordCloud/answer/answer.wordCloud.js"></script>
 
     <script type="text/javascript" src="myPolls/MyPollsController.js"></script>
     <script type="text/javascript" src="myPolls/collections/CollectionsController.js"></script>
+    <script type="text/javascript" src="myPolls/collections/editCollection/editCollection.js"></script>
     <script type="text/javascript" src="myPolls/upcoming/UpcomingController.js"></script>
 
 </body>

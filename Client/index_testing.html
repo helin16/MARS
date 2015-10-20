@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>melts</title>
+
+<meta name="viewport" content="initial-scale=1" />
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+
+<link rel="stylesheet" type="text/css" href="bower_components/angular-material/angular-material.css">
+<link rel="stylesheet" type="text/css" href="bower_components/roboto-fontface/css/roboto-fontface.css">
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+<link rel="stylesheet" type="text/css" href="common/max-width-960.css">
+
+</head>
+<body ng-app="mars" layout="row">
+  <div layout="row" flex> <!-- view -->
+
+
+    <md-sidenav class="md-sidenav-left md-whiteframe-z2" md-is-locked-open="$mdMedia('gt-md')"> <!-- myPolls -->
+      <md-toolbar class="md-theme-indigo">
+        <h1 class="md-toolbar-tools">Sidenav Left</h1>
+      </md-toolbar>
+      <md-content>
+        <p>This sidenav is locked open on your device. To go back to the default behavior,
+        narrow your display.<br><br>
+
+        This sidenav is locked open on your device. To go back to the default behavior,
+        narrow your display.<br><br>
+
+        This sidenav is locked open on your device. To go back to the default behavior,
+        narrow your display.<br><br>
+
+        This sidenav is locked open on your device. To go back to the default behavior,
+        narrow your display.<br><br>
+
+        This sidenav is locked open on your device. To go back to the default behavior,
+        narrow your display.<br><br></p>
+      </md-content>
+    </md-sidenav>
+
+    <div flex layout="column">
+      <md-toolbar class="md-theme-indigo">
+        <h1 class="md-toolbar-tools">Sidenav Left</h1>
+      </md-toolbar>
+
+      <md-content flex layout="row">
+
+        <md-content flex class="md-hue-1">
+          <div> 
+          The left sidenav will 'lock open' on a medium (>=960px wide) device.<br>
+          The right sidenav will focus on a specific child element.<br>
+          The right sidenav will focus on a specific child element.<br>
+          <p>
+          The right sidenav will focus on a specific child element.
+          </p>
+          <p>
+          The right sidenav will focus on a specific child element.
+          </p>
+          <p>
+          The right sidenav will focus on a specific child element.
+          </p>
+          <p>
+          The right sidenav will focus on a specific child element.
+          </p>
+          <p>
+          The right sidenav will focus on a specific child element.
+          </p>
+          <p>
+          The right sidenav will focus on a specific child element.
+          </p>
+          <p>
+          The right sidenav will focus on a specific child element.
+          </p>
+          <p>
+          The right sidenav will focus on a specific child element.
+          </p>
+          The left sidenav will 'lock open' on a medium (>=960px wide) device.<br>
+          The right sidenav will focus on a specific child element.<br>
+          The right sidenav will focus on a specific child element.<br>
+          </div>
+        </md-content>
+
+        <md-sidenav class="md-sidenav-right md-whiteframe-z2" md-is-locked-open="$mdMedia('gt-md')">
+          <md-toolbar class="md-theme-indigo">
+            <h1 class="md-toolbar-tools">Sidenav Left</h1>
+          </md-toolbar>
+          <md-content>
+            <p>This sidenav is locked open on your device. To go back to the default behavior,
+            narrow your display.<br><br>
+
+            This sidenav is locked open on your device. To go back to the default behavior,
+            narrow your display.<br><br>
+
+            This sidenav is locked open on your device. To go back to the default behavior,
+            narrow your display.<br><br>
+
+            This sidenav is locked open on your device. To go back to the default behavior,
+            narrow your display.<br><br>
+
+            This sidenav is locked open on your device. To go back to the default behavior,
+            narrow your display.<br><br>
+            </p>
+          </md-content>
+        </md-sidenav>
+
+      </md-content>
+    </div>
+  </div>
+
+
+
+
+
+<script src="https://cdn.socket.io/socket.io-1.2.0.js"></script>
+<script type="text/javascript" src="bower_components/angular/angular.js"></script>
+<script type="text/javascript" src="bower_components/angular-ui-router/release/angular-ui-router.min.js"></script>
+<script type="text/javascript" src="bower_components/angular-material/angular-material.js"></script>
+<script type="text/javascript" src="bower_components/angular-animate/angular-animate.js"></script>
+<script type="text/javascript" src="bower_components/angular-aria/angular-aria.js"></script>
+
+<script type="text/javascript" src="bower_components/angular-socket-io/socket.min.js"></script>
+
+<script type="text/javascript" src="app.js"></script>
+
+<script type="text/javascript" src="common/services/questionManager.js"></script>
+
+<script type="text/javascript" src="student/answer.js"></script>
+<script type="text/javascript" src="student/answer.join.js"></script>
+
+<script type="text/javascript" src="plugins/multipleChoice/answer/answer.multipleChoice.js"></script>
+<script type="text/javascript" src="plugins/multipleChoice/results/results.multipleChoice.js"></script>
+<script type="text/javascript" src="plugins/multipleChoice/edit/edit.multipleChoice.js"></script>
+
+<script type="text/javascript" src="plugins/wordCloud/answer/answer.wordCloud.js"></script>
+
+<script type="text/javascript" src="myPolls/MyPollsController.js"></script>
+<script type="text/javascript" src="myPolls/collections/CollectionsController.js"></script>
+<script type="text/javascript" src="myPolls/collections/editCollection/editCollection.js"></script>
+<script type="text/javascript" src="myPolls/upcoming/UpcomingController.js"></script>
+</body>
+</html>

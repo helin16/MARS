@@ -1,33 +1,37 @@
-<md-toolbar>
-  <div class="md-toolbar-tools">
-    <span>Mars</span>
-    <span flex></span>
-    <md-button class="md-icon-button" aria-label="Join Feed" ng-click="showJoinDialog($event)">
-      <md-icon class="material-icons"> add </md-icon>
-    </md-button>
+<div flex layout="column">
 
-    <md-menu md-position-mode="target-right target" >
-      <md-button aria-label="Account" class="md-icon-button" ng-click="$mdOpenMenu($event)">
-        <md-icon class="material-icons"> account_circle </md-icon>
+  <md-toolbar>
+    <div class="md-toolbar-tools">
+      <span>Mars</span>
+      <span flex></span>
+      <md-button class="md-icon-button" aria-label="Join Feed" ng-click="showJoinDialog($event)">
+        <md-icon class="material-icons"> add </md-icon>
       </md-button>
-      <md-menu-content width="3" >
-        <md-menu-item>
-          <md-button ng-click="logout()">
-            Sign out
-          </md-button>
-        </md-menu-item>
-      </md-menu-content>
-    </md-menu>
 
-  </div>
-</md-toolbar>
+      <md-menu md-position-mode="target-right target" >
+        <md-button aria-label="Account" class="md-icon-button" ng-click="$mdOpenMenu($event)">
+          <md-icon class="material-icons"> account_circle </md-icon>
+        </md-button>
+        <md-menu-content width="3" >
+          <md-menu-item>
+            <md-button ng-click="logout()">
+              Sign out
+            </md-button>
+          </md-menu-item>
+        </md-menu-content>
+      </md-menu>
 
-<!-- Polls go here -->
-<md-content flex layout-padding class="md-hue-1">
-  <div ui-view class="max-width-960"></div>
-</md-content>
+    </div>
+  </md-toolbar>
 
-<!-- Button to change polls (if more than 1 exists) -->
-<md-button ng-show="activePolls.length > 1" class="md-fab md-fab-bottom-right" aria-label="Switch Polls" ng-click="nextPoll($event)">
-  <md-icon class="material-icons"> queue </md-icon>
-</md-button>
+  <!-- Questions go here -->
+  <md-content flex layout-padding class="md-hue-1">
+    <div ui-view class="max-width-960"></div>
+  </md-content>
+
+  <!-- Button to change polls (if more than 1 exists) -->
+  <md-button ng-show="multipleQuestions" class="md-fab md-fab-bottom-right" aria-label="Switch Questions" ng-click="nextPoll($event)">
+    <md-icon class="material-icons"> queue </md-icon>
+  </md-button>
+
+</div>
