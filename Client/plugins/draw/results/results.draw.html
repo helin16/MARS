@@ -1,0 +1,5 @@
+<img id="back-image" ng-src="{{ example.image }}">
+
+<div layout="row" layout-wrap id="photo-wall">
+	<canvas id="{{ submission }}" width="800" height="480" ng-repeat="submission in submissionList" onclick="fullScreen(this)"></canvas>
+</div>
