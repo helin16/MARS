@@ -1,2 +1,11 @@
+# Node/Bower Generated Folders
 node_modules
 bower_components
+bin
+npm-debug.log
+
+# Mac Specific Files
+.DS_Store
+
+# Get rid of Sublime settings
+*.sublime-workspace
