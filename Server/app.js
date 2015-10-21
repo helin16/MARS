@@ -56,11 +56,11 @@ app.use(function(req, res, next) {
 
 // Note: currently the lecturer creates a room with only themselves in the room.
 // The student's then post questions to the room which means only the lecturer
-// can see them. Problem with this: There are no rooms for all students attempting 
+// can see them. Problem with this: There are no rooms for all students attempting
 // question x and so we have to send a message to EVERYONE to let them
 // know a question session has finished. It would be better to make rooms for
 // students and lecturers, keep track of lecturers socket_id's and then student
-// responses would be directed to the lecturer's socket_id's (ie no private 
+// responses would be directed to the lecturer's socket_id's (ie no private
 // rooms).
 
 var response = io.of('/response');
@@ -80,20 +80,29 @@ response.on('connection', function(socket){
     socket.join(questionId);
 
     // TODO set question's sessionActive field to 'true' in database
-    // TODO retrieve question info from db to send to students 
+    // TODO retrieve question info from db to send to students
     // Note: the actions above can be done with a findAndModify
     // see: http://docs.mongodb.org/manual/reference/method/db.collection.findAndModify/
+
+
+    // var questionDataFromDatabase = {
+    //   id: questionId, // this can be from db or lecturer's socket message
+    //   pluginType: "multipleChoice",
+    //   collection: "ENG1001",
+    //   question: "What shoud we make ENG1001?",
+    //   answers: [
+    //     { id: 0, label: 'Bigger, Better, Badder.' },
+    //     { id: 1, label: 'Softer, Cuter, Cuddlier.' },
+    //     { id: 2, label: 'Smoother, Silkier, Slipperier.' },
+    //     { id: 3, label: 'Rougher, Tougher, Donut.' }
+    //   ]
+    // }
+
     var questionDataFromDatabase = {
-      id: questionId, // this can be from db or lecturer's socket message
-      pluginType: "multipleChoice",
+      id: questionId,
+      pluginType: "draw",
       collection: "ENG1001",
-      question: "What shoud we make ENG1001?",
-      answers: [
-        { id: 0, label: 'Bigger, Better, Badder.' },
-        { id: 1, label: 'Softer, Cuter, Cuddlier.' },
-        { id: 2, label: 'Smoother, Silkier, Slipperier.' },
-        { id: 3, label: 'Rougher, Tougher, Donut.' }
-      ]
+      question: "Circle the circle."
     }
     // Emit new session message with question data to students
     response.emit('new session', questionDataFromDatabase);
@@ -115,15 +124,15 @@ response.on('connection', function(socket){
 
   // When a student posts a new answer
   socket.on('new answer', function(answer) {
-    // TODO If question's sessionActive field is true in db, store user's answer 
+    // TODO If question's sessionActive field is true in db, store user's answer
     // in db
 
     // Note:
-    // We could also check that the user has subscribed to this collection 
-    // before saving their answer but there's no point since anyone is able to 
+    // We could also check that the user has subscribed to this collection
+    // before saving their answer but there's no point since anyone is able to
     // subscribe to any collection.
 
-    // Get user name and id from session and send it with answer data to 
+    // Get user name and id from session and send it with answer data to
     var answerWrapper = {};
     answerWrapper.userId = 'user123';
     answerWrapper.username = 'Student McStudent';
@@ -148,7 +157,7 @@ editing.on('connection', function(socket){
   console.log('new editing user connected');
   socket.on('edit', function() {
     console.log("i got a message to say someone is editing")
-  })  
+  })
 });
 
 /// error handlers

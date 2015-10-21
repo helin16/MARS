@@ -7,7 +7,7 @@ app.controller('UpcomingController', function($scope, $state, resultsService) {
 	// temp for testing
 	$scope.run = function (questionId) {
 		resultsService.newSession(questionId);
-		$state.go('myPolls.resultsPlugin_multipleChoice');
+		$state.go('myPolls.resultsPlugin_draw');
 	}
 
 	// TODO Create a service to pull this data

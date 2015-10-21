@@ -4,7 +4,7 @@ app.controller('DrawResultsPluginController', function($scope, questionManager) 
 
 	// An example model - this will be loaded with the page
     $scope.example = {
-      image: "../sample.jpg"
+      image: "https://raw.githubusercontent.com/SLC3/MARS-Annotate/master/sample.jpg"
     }
 
     $scope.submissionList = getLocalStorageKeys();

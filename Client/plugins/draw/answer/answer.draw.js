@@ -1,13 +1,18 @@
 
 
-app.controller('DrawPluginController', function($scope, questionManager) {
+app.controller('DrawAnswerPluginController', function($scope, questionManager) {
 
 	// An example model - this will be loaded with the page
     $scope.example = {
       image: "https://raw.githubusercontent.com/SLC3/MARS-Annotate/master/sample.jpg"
     }
 
-    $scope.selectedPoll = questionManager.selectedQuestion;
+    $scope.selectedPoll = questionManager.getSelectedQuestion();
+
+    questionManager.onSelectedQuestionUpdate($scope, function () {
+      $scope.selectedPoll = questionManager.getSelectedQuestion()
+      console.log($scope.selectedPoll)
+    })
 
 
     var savedDraws = {
@@ -167,12 +172,9 @@ app.controller('DrawPluginController', function($scope, questionManager) {
 
     onload();
 
-    $scope.submit = function() {
-      var date = new Date();
-
-      localStorage.setItem("submission"+date.valueOf(), JSON.stringify(savedDraws));
-
-      console.log(savedDraws);
+    $scope.submit = function() { //this can be called on button click etc
+      console.log('Sending data to server via socket');
+      questionManager.submitAnswer(savedDraws);
     }
 
     $scope.undoFunction = function() {
