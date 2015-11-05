@@ -1,0 +1,9 @@
+#!/usr/bin/env node
+var debug = require('debug')('mars');
+var server = require('../app');
+
+var port = process.env.PORT || 3000;
+
+server.listen(port, function() {
+  console.log('Express server listening on port ' + server.address().port);
+});
